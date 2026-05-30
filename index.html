@@ -1,0 +1,83 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="shared.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MNotesHub</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <a href="#hero">Home</a>
+    <a href="#mocktest">Mock Test</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact Us</a>
+    <a href="privacy">Privacy Policy</a>
+</div>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <div class="logo">
+        <img src="logo.png" alt="logo">
+        <h2>MegNEETJEE</h2>
+    </div>
+</div>
+<section id=hero class="hero">
+<h1>Test Your Ability</h1>
+<p> Unlock Your Potential</p>
+</section>
+<!-- MOCK TEST SECTION -->
+<section id=mocktest class="section">
+    <h2>JEE Mock Test</h2>
+    <li><b>Each Subject Contain 30 Question Each</b></li>
+    <li><b>The Test Is 3 hours </b></li>
+    <li><b>New Test arrive every First Week Of The Month</b></li>
+        <div class="card jee" onclick="location.href='Jee/jee.html'">
+            <h2>Click To Take Test</h2>
+        </div>
+ </section>
+ <section class="section">
+<h2>NEET Mock Test</h2>
+        <div class="card neet" onclick="location.href='Neet/neet.html'">
+            <h2>NEET Mock Test</h2>
+        </div>
+ </section>
+ <!--About -->
+ <section id=about class="section">
+ <h2> About MegNEETJEE</h2>
+ <p><b>MegNEETJEE</b> is a free mock test site create by Rewardking Thongni who then patner with Fosterwell Kharjahrin to deliver mock test every month to neet and jee aspirant from the state of Meghalaya</p>
+ <p> The Website is free and all question are from official JEE Mains Website and anyone can use this website without login or registering themselve</p>
+ <p>This Website is maintained by Reward and Fosterwell and do not intent to make any ads on our website</p>
+ </section>
+ 
+ <section id=contact class="section">
+ <h2>Contact Us </h2>
+ <p>megneetjee@gmail.com</p>
+ <p>9876543210</p>
+ <a href="form">Click For Feedback</a>
+ </section>
+
+<!-- Footer -->
+<footer class="footer">
+<p>Home</p>
+<p>Mock Test</p>
+<p>Contact Us</p>
+<p>About Us</p>
+    <p>© 2026 MegNEETJEE. All rights reserved.</p>
+</footer>
+<script>
+function toggleMenu() {
+  let sidebar = document.getElementById("sidebar");
+  sidebar.style.left = (sidebar.style.left === "0px") ? "-260px" : "0px";
+}
+</script>
+
+</body>
+</html>
