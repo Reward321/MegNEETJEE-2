@@ -1,0 +1,1306 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JEE Main 2026 · Apr 4 Shift 1</title>
+  <link rel="stylesheet" href="shared.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+  <style>
+    .jee-badge {
+      display: inline-block;
+      background: var(--jee);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .dropped-badge {
+      background: var(--yellow-bg);
+      color: var(--yellow);
+      border: 1px solid var(--yellow-border);
+      font-family: 'DM Mono', monospace;
+      font-size: var(--fs-xs);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .q-card.dropped { border-left: 3px solid var(--yellow); opacity: 0.75; }
+    .section-divider {
+      text-align: center;
+      padding: 8px 0 4px;
+      font-family: 'DM Mono', monospace;
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="jee-header">
+  <div class="logo">
+    <h2>JEE <span>Main</span></h2>
+  </div>
+  <div class="header-meta">
+    2026 Session 2 · Apr 4 · Shift 1<br>
+    300 Marks · 180 Min
+  </div>
+  <div class="header-right">
+    <div class="score-strip" id="scoreStrip">
+      <span class="score-chip green" id="chipCorrect">✓ 0</span>
+      <span class="score-chip red"   id="chipWrong">✗ 0</span>
+      <span class="score-chip total" id="chipScore">0 / 300</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ PROGRESS ═══════════════ -->
+<div class="progress-bar-wrap">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<div class="container">
+
+  <!-- RESULT PANEL -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-header">
+      <h2>Your Score</h2>
+      <p>JEE Main 2026 · April 4 · Shift 1</p>
+    </div>
+    <div class="final-score" id="finalScore">0</div>
+    <div class="out-of">out of 300</div>
+    <div class="score-bar-wrap">
+      <div class="score-bar-fill" id="scoreBarFill"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-label">Correct</div>
+        <div class="stat-val sv-g" id="resCorrect">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Wrong</div>
+        <div class="stat-val sv-r" id="resWrong">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Skipped</div>
+        <div class="stat-val sv-y" id="resSkipped">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Accuracy</div>
+        <div class="stat-val sv-b" id="resAccuracy">—</div>
+      </div>
+    </div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Retake Quiz</button>
+  </div>
+
+  <!-- ══════════ MATHEMATICS ══════════ -->
+  <div class="section-heading">
+    <h2>Mathematics</h2>
+    <span class="pill badge-math">Section A · MCQ</span>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-card" id="card-1">
+    <div class="q-number">Q1 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let [·] denote the greatest integer function. If the domain of the function \(f(x) = \cos^{-1}\!\left(\dfrac{4x+2[x]}{3}\right)\) is \([\alpha,\beta]\), then \(12(\alpha+\beta)\) is equal to:</div>
+    <div class="options" id="opts-1">
+      <button class="option-btn" data-q="1" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>6</button>
+      <button class="option-btn" data-q="1" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>8</button>
+      <button class="option-btn" data-q="1" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>9</button>
+      <button class="option-btn" data-q="1" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>4</button>
+    </div>
+    <div class="answer-feedback" id="fb-1"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card" id="card-2">
+    <div class="q-number">Q2 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">If the set of all solutions of \(|x^2+x-9|=|x|+|x^2-9|\) is \([\alpha,\beta]\cup[\gamma,\infty)\), then \((\alpha^2+\beta^2+\gamma^2)\) is equal to:</div>
+    <div class="options" id="opts-2">
+      <button class="option-btn" data-q="2" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>9</button>
+      <button class="option-btn" data-q="2" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>18</button>
+      <button class="option-btn" data-q="2" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>36</button>
+      <button class="option-btn" data-q="2" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>72</button>
+    </div>
+    <div class="answer-feedback" id="fb-2"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card" id="card-3">
+    <div class="q-number">Q3 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let \(z\) be a complex number such that \(|z+2|=|z-2|\) and \(\arg\!\left(\dfrac{z+3}{z-i}\right)=\dfrac{\pi}{4}\). Then \(|z|^2\) is equal to:</div>
+    <div class="options" id="opts-3">
+      <button class="option-btn" data-q="3" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>9</button>
+      <button class="option-btn" data-q="3" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>4</button>
+      <button class="option-btn" data-q="3" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>5</button>
+      <button class="option-btn" data-q="3" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>1</button>
+    </div>
+    <div class="answer-feedback" id="fb-3"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card" id="card-4">
+    <div class="q-number">Q4 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The number of functions \(f:\{1,2,3,4\}\to\{a,b,c\}\) which are <em>not onto</em> is:</div>
+    <div class="options" id="opts-4">
+      <button class="option-btn" data-q="4" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>48</button>
+      <button class="option-btn" data-q="4" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>45</button>
+      <button class="option-btn" data-q="4" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>51</button>
+      <button class="option-btn" data-q="4" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>35</button>
+    </div>
+    <div class="answer-feedback" id="fb-4"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card" id="card-5">
+    <div class="q-number">Q5 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let \(S=\left\{A=\begin{pmatrix}a&b\\c&d\end{pmatrix}: a,b,c,d\in\{0,1,2,3,4\},\; A^2-4A+3I=0\right\}\). Then the number of matrices in \(S\) for which the sum of diagonal elements equals 4 is:</div>
+    <div class="options" id="opts-5">
+      <button class="option-btn" data-q="5" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>20</button>
+      <button class="option-btn" data-q="5" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>17</button>
+      <button class="option-btn" data-q="5" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>21</button>
+      <button class="option-btn" data-q="5" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>19</button>
+    </div>
+    <div class="answer-feedback" id="fb-5"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card" id="card-6">
+    <div class="q-number">Q6 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let \(A=\begin{pmatrix}1&1&2\\-2&0&1\\1&3&5\end{pmatrix}\). Then the sum of all elements of the matrix \(\text{adj}\!\left(\text{adj}\!\left(2(\text{adj}\,A)^{-1}\right)\right)\) is equal to:</div>
+    <div class="options" id="opts-6">
+      <button class="option-btn" data-q="6" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>3</button>
+      <button class="option-btn" data-q="6" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>4</button>
+      <button class="option-btn" data-q="6" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>−4</button>
+      <button class="option-btn" data-q="6" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>−3</button>
+    </div>
+    <div class="answer-feedback" id="fb-6"></div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card" id="card-7">
+    <div class="q-number">Q7 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The first term of an A.P. of 30 non-negative terms is \(\dfrac{10}{3}\). If the sum of this A.P. is the cube of its last term, then its common difference is:</div>
+    <div class="options" id="opts-7">
+      <button class="option-btn" data-q="7" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(\dfrac{5}{87}\)</button>
+      <button class="option-btn" data-q="7" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(\dfrac{25}{83}\)</button>
+      <button class="option-btn" data-q="7" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(\dfrac{15}{29}\)</button>
+      <button class="option-btn" data-q="7" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(\dfrac{5}{29}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-7"></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card" id="card-8">
+    <div class="q-number">Q8 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The number of ways of forming a queue of 4 boys and 3 girls such that all the girls are <em>not</em> together is:</div>
+    <div class="options" id="opts-8">
+      <button class="option-btn" data-q="8" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>5040</button>
+      <button class="option-btn" data-q="8" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>3050</button>
+      <button class="option-btn" data-q="8" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>3410</button>
+      <button class="option-btn" data-q="8" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>4320</button>
+    </div>
+    <div class="answer-feedback" id="fb-8"></div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card" id="card-9">
+    <div class="q-number">Q9 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let the smallest value of \(k\in\mathbb{N}\) for which the coefficient of \(x^3\) in \((1+x)^3+(1+x)^4+\cdots+(1+x)^k+(1+kx)^{100}\), \(x\neq 0\), is \(\left(\dfrac{43n+101}{4}\right)\binom{100}{3}\) for some \(n\in\mathbb{N}\), be \(p\). Then the value of \(p+n\) is:</div>
+    <div class="options" id="opts-9">
+      <button class="option-btn" data-q="9" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>10</button>
+      <button class="option-btn" data-q="9" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>11</button>
+      <button class="option-btn" data-q="9" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>12</button>
+      <button class="option-btn" data-q="9" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>13</button>
+    </div>
+    <div class="answer-feedback" id="fb-9"></div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card" id="card-10">
+    <div class="q-number">Q10 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Suppose that the mean and median of the non-negative numbers 21, 8, 17, \(a\), 51, 103, \(b\), 13, 67 (\(a>b\)) are 40 and 21 respectively. If the mean deviation about the median is 26, then \(2a\) is equal to:</div>
+    <div class="options" id="opts-10">
+      <button class="option-btn" data-q="10" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>109</button>
+      <button class="option-btn" data-q="10" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>117</button>
+      <button class="option-btn" data-q="10" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>161</button>
+      <button class="option-btn" data-q="10" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>131</button>
+    </div>
+    <div class="answer-feedback" id="fb-10"></div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="q-card" id="card-11">
+    <div class="q-number">Q11 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let the line \(L_1: x+3=0\) intersect the lines \(L_2: x-y=0\) and \(L_3: 3x+y=0\) at points \(A\) and \(B\) respectively. Let the bisector of the obtuse angle between \(L_2\) and \(L_3\) intersect \(L_1\) at point \(C\). Then \(BC^2:AC^2\) is equal to:</div>
+    <div class="options" id="opts-11">
+      <button class="option-btn" data-q="11" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>5 : 1</button>
+      <button class="option-btn" data-q="11" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>1 : 5</button>
+      <button class="option-btn" data-q="11" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>2 : 3</button>
+      <button class="option-btn" data-q="11" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>3 : 2</button>
+    </div>
+    <div class="answer-feedback" id="fb-11"></div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-card" id="card-12">
+    <div class="q-number">Q12 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let the vertex \(A\) of a triangle \(ABC\) be \((1,2)\), and the mid-point of side \(AB\) be \((5,-1)\). If the centroid of this triangle is \((3,4)\) and its circumcenter is \((\alpha,\beta)\), then \(21(\alpha+\beta)\) is equal to:</div>
+    <div class="options" id="opts-12">
+      <button class="option-btn" data-q="12" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>309</button>
+      <button class="option-btn" data-q="12" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>403</button>
+      <button class="option-btn" data-q="12" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>497</button>
+      <button class="option-btn" data-q="12" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>524</button>
+    </div>
+    <div class="answer-feedback" id="fb-12"></div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-card" id="card-13">
+    <div class="q-number">Q13 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Suppose that two chords, drawn from the point \((1,2)\) on the circle \(x^2+y^2+x-3y=0\), are bisected by the \(y\)-axis. If the other ends of these chords are \(R\) and \(S\), and the midpoint of segment \(RS\) is \((\alpha,\beta)\), then \(6(\alpha+\beta)\) is equal to:</div>
+    <div class="options" id="opts-13">
+      <button class="option-btn" data-q="13" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>1</button>
+      <button class="option-btn" data-q="13" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>3</button>
+      <button class="option-btn" data-q="13" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>4</button>
+      <button class="option-btn" data-q="13" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>6</button>
+    </div>
+    <div class="answer-feedback" id="fb-13"></div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="q-card" id="card-14">
+    <div class="q-number">Q14 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A line with direction ratios \(1,-1,2\) intersects the lines \(\dfrac{x}{2}=\dfrac{y}{3}=\dfrac{z+1}{3}\) and \(\dfrac{x+1}{-1}=\dfrac{y-2}{1}=\dfrac{z}{4}\) at points \(P\) and \(Q\) respectively. If the length of segment \(PQ\) is \(\alpha\), then \(225\alpha^2\) is equal to:</div>
+    <div class="options" id="opts-14">
+      <button class="option-btn" data-q="14" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>1024</button>
+      <button class="option-btn" data-q="14" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>1014</button>
+      <button class="option-btn" data-q="14" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>1104</button>
+      <button class="option-btn" data-q="14" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>1204</button>
+    </div>
+    <div class="answer-feedback" id="fb-14"></div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-card" id="card-15">
+    <div class="q-number">Q15 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The square of the distance of the point \((-2,-8,6)\) from the line \(\dfrac{x-1}{1}=\dfrac{y-1}{2}=\dfrac{z}{-1}\) along the line \(\dfrac{x+5}{1}=\dfrac{y+5}{-1}=\dfrac{z}{2}\) is equal to:</div>
+    <div class="options" id="opts-15">
+      <button class="option-btn" data-q="15" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>3</button>
+      <button class="option-btn" data-q="15" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>6</button>
+      <button class="option-btn" data-q="15" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>8</button>
+      <button class="option-btn" data-q="15" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>12</button>
+    </div>
+    <div class="answer-feedback" id="fb-15"></div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-card" id="card-16">
+    <div class="q-number">Q16 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">If \(y=\tan^{-1}\!\left(\dfrac{3\cos x-4\sin x}{4\cos x+3\sin x}\right)+2\tan^{-1}\!\left(\dfrac{x}{1+\sqrt{1-x^2}}\right)\), then \(\dfrac{dy}{dx}\) at \(x=\dfrac{\sqrt{3}}{2}\) is equal to:</div>
+    <div class="options" id="opts-16">
+      <button class="option-btn" data-q="16" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>3</button>
+      <button class="option-btn" data-q="16" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>−1</button>
+      <button class="option-btn" data-q="16" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>1</button>
+      <button class="option-btn" data-q="16" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>2</button>
+    </div>
+    <div class="answer-feedback" id="fb-16"></div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-card" id="card-17">
+    <div class="q-number">Q17 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let \(f\) be a real polynomial of degree \(n\) such that \(f(x)=f'(x)\cdot f''(x)\) for all \(x\in\mathbb{R}\). If \(f(0)=0\), then \(36\!\left(f'(2)+f''(2)+\displaystyle\int_0^2 f(x)\,dx\right)\) is equal to:</div>
+    <div class="options" id="opts-17">
+      <button class="option-btn" data-q="17" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>42</button>
+      <button class="option-btn" data-q="17" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>46</button>
+      <button class="option-btn" data-q="17" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>56</button>
+      <button class="option-btn" data-q="17" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>66</button>
+    </div>
+    <div class="answer-feedback" id="fb-17"></div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="q-card" id="card-18">
+    <div class="q-number">Q18 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The area of the region \(\{(x,y): y\le\pi-|x|,\; y\le|x\sin x|,\; y\ge 0\}\) is:</div>
+    <div class="options" id="opts-18">
+      <button class="option-btn" data-q="18" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(1+\dfrac{\pi^2}{8}\)</button>
+      <button class="option-btn" data-q="18" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(2+\dfrac{\pi^2}{4}\)</button>
+      <button class="option-btn" data-q="18" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(\dfrac{\pi^2}{8}-1\)</button>
+      <button class="option-btn" data-q="18" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(4+\dfrac{\pi^2}{2}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-18"></div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-card" id="card-19">
+    <div class="q-number">Q19 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let \(\displaystyle\int_{-\pi}^{2}\!\big(|\sin x|+[x\sin x]\big)\,dx=2(3-\cos 2)+\beta\), where [·] is the greatest integer function. Then \(\beta\sin\!\left(\dfrac{\beta}{2}\right)\) equals:</div>
+    <div class="options" id="opts-19">
+      <button class="option-btn" data-q="19" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>1</button>
+      <button class="option-btn" data-q="19" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>2</button>
+      <button class="option-btn" data-q="19" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>4</button>
+      <button class="option-btn" data-q="19" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>8</button>
+    </div>
+    <div class="answer-feedback" id="fb-19"></div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-card" id="card-20">
+    <div class="q-number">Q20 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Let \(y=y(x)\) be the solution of \(\dfrac{dy}{dx}=(1+x+x^2)(1-y+y^2)\), \(y(0)=\dfrac{1}{2}\). Then \((2y(1)-1)\) is equal to:</div>
+    <div class="options" id="opts-20">
+      <button class="option-btn" data-q="20" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(\sqrt{3}\tan\!\left(\dfrac{11\sqrt{3}}{6}\right)\)</button>
+      <button class="option-btn" data-q="20" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(\dfrac{\sqrt{3}}{2}\tan\!\left(\dfrac{11\sqrt{3}}{12}\right)\)</button>
+      <button class="option-btn" data-q="20" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(\sqrt{3}\tan\!\left(\dfrac{11\sqrt{3}}{12}\right)\)</button>
+      <button class="option-btn" data-q="20" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(\dfrac{\sqrt{3}}{2}\tan\!\left(\dfrac{11\sqrt{3}}{6}\right)\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-20"></div>
+  </div>
+
+  <!-- Math Section B -->
+  <div class="subsection-label">Mathematics · Section B · Integer Type</div>
+
+  <!-- Q21 -->
+  <div class="q-card integer-type" id="card-21">
+    <div class="q-number">Q21 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">A coin is tossed 8 times. If the probability that exactly 4 heads appear in the first six tosses and exactly 3 heads appear in the last five tosses is \(p\), then \(96p\) is equal to ____.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-21" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(21)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-21"></div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="q-card integer-type" id="card-22">
+    <div class="q-number">Q22 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">Consider the parabola \(P: y^2=4kx\) and the ellipse \(E: \dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1\). Let the line segment joining the points of intersection of \(P\) and \(E\) be their latus rectums. If the eccentricity of \(E\) is \(e\), then \(e^2+2\sqrt{2}\) is equal to ____.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-22" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(22)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-22"></div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="q-card integer-type" id="card-23">
+    <div class="q-number">Q23 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">If \(A=\dfrac{\sin 3°}{\cos 9°}+\dfrac{\sin 9°}{\cos 27°}+\dfrac{\sin 27°}{\cos 81°}\) and \(B=\tan 81°-\tan 3°\), then \(\dfrac{B}{A}\) is equal to ____.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-23" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(23)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-23"></div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="q-card integer-type" id="card-24">
+    <div class="q-number">Q24 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">Let \(\vec{a}_k=(\tan\theta_k)\hat{i}+\hat{j}\) and \(\vec{b}_k=\hat{i}-(\cot\theta_k)\hat{j}\), where \(\theta_k=\dfrac{2^{k-1}\pi}{2^n+1}\) for some \(n\in\mathbb{N},\,n>5\). Then the value of \(\dfrac{\sum_{k=1}^{n}|\vec{a}_k|^2}{\sum_{k=1}^{n}|\vec{b}_k|^2}\) is ____.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-24" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(24)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-24"></div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="q-card integer-type" id="card-25">
+    <div class="q-number">Q25 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">The number of points at which the function \(f(x)=\max\{6x,\,2+3x^2\}+|x-1|\,|\cos(x^2-\tfrac{1}{4})|\), \(x\in(-\pi,\pi)\), is <em>not differentiable</em> is ____.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-25" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(25)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-25"></div>
+  </div>
+
+  <!-- ══════════════ PHYSICS ══════════════ -->
+  <div class="section-heading">
+    <h2>Physics</h2>
+    <span class="pill pill-physics">Section A · MCQ</span>
+  </div>
+
+  <!-- Q26 -->
+  <div class="q-card" id="card-26">
+    <div class="q-number">Q26 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">In a screw gauge, when the circular scale is given five complete rotations it moves linearly by 2.5 mm. If the circular scale has 100 divisions, the least count of the screw gauge is ________ mm.</div>
+    <div class="options" id="opts-26">
+      <button class="option-btn" data-q="26" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(1\times10^{-2}\)</button>
+      <button class="option-btn" data-q="26" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(1\times10^{-3}\)</button>
+      <button class="option-btn" data-q="26" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(5\times10^{-2}\)</button>
+      <button class="option-btn" data-q="26" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(5\times10^{-3}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-26"></div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="q-card" id="card-27">
+    <div class="q-number">Q27 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The increase in pressure required to decrease the volume of water is \(6.3\times10^{9}\) N/m². The percentage decrease in volume is ________. (Bulk modulus of water \(=2.1\times10^{11}\) N/m².)</div>
+    <div class="options" id="opts-27">
+      <button class="option-btn" data-q="27" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>2%</button>
+      <button class="option-btn" data-q="27" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>3%</button>
+      <button class="option-btn" data-q="27" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>6%</button>
+      <button class="option-btn" data-q="27" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>4%</button>
+    </div>
+    <div class="answer-feedback" id="fb-27"></div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="q-card" id="card-28">
+    <div class="q-number">Q28 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The time taken by a block of mass \(m\) to slide down from the highest to the lowest point on a rough inclined plane is 50% more than on a smooth inclined plane. Both planes are at 45° with the horizontal. The coefficient of kinetic friction is:</div>
+    <div class="options" id="opts-28">
+      <button class="option-btn" data-q="28" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>3/4</button>
+      <button class="option-btn" data-q="28" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>2/3</button>
+      <button class="option-btn" data-q="28" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>5/9</button>
+      <button class="option-btn" data-q="28" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>4/9</button>
+    </div>
+    <div class="answer-feedback" id="fb-28"></div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="q-card" id="card-29">
+    <div class="q-number">Q29 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Two nuclei of mass number 3 combine with another nucleus of mass number 4 to yield a nucleus of mass number 10. If the binding energy per nucleon for mass numbers 3, 4 and 10 are 5.6 MeV, 7.4 MeV and 6.1 MeV respectively, then \(\Delta Mc^2\) = ______ MeV.</div>
+    <div class="options" id="opts-29">
+      <button class="option-btn" data-q="29" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>6.9</button>
+      <button class="option-btn" data-q="29" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>7.9</button>
+      <button class="option-btn" data-q="29" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>2.2</button>
+      <button class="option-btn" data-q="29" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>4.3</button>
+    </div>
+    <div class="answer-feedback" id="fb-29"></div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="q-card" id="card-30">
+    <div class="q-number">Q30 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A solid sphere of mass \(M\) and radius \(R\) is divided into two unequal parts. The smaller part (mass \(M/8\)) is made into a sphere of radius \(r\), and the larger part into a circular disc of thickness \(t\) and radius \(2R\). If \(I_1\) is the moment of inertia of the sphere (radius \(r\)) about an axis through its centre and \(I_2\) is the moment of inertia of the disc about its diameter, then \(I_1/I_2\) equals:</div>
+    <div class="options" id="opts-30">
+      <button class="option-btn" data-q="30" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>35</button>
+      <button class="option-btn" data-q="30" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>70</button>
+      <button class="option-btn" data-q="30" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>140</button>
+      <button class="option-btn" data-q="30" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>210</button>
+    </div>
+    <div class="answer-feedback" id="fb-30"></div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="q-card" id="card-31">
+    <div class="q-number">Q31 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Two projectiles are projected with the same initial velocities at 15° and 30° with respect to the horizontal. The ratio of their ranges is \(1:x\). The value of \(x\) is:</div>
+    <div class="options" id="opts-31">
+      <button class="option-btn" data-q="31" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(\sqrt{2}\)</button>
+      <button class="option-btn" data-q="31" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(\sqrt{3}\)</button>
+      <button class="option-btn" data-q="31" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(2\sqrt{3}\)</button>
+      <button class="option-btn" data-q="31" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(1/\sqrt{2}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-31"></div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="q-card" id="card-32">
+    <div class="q-number">Q32 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A graph shows the variation of stopping potential \(V_0\) with frequency \(\nu\) of incident radiation for three photosensitive metals \(X_1\), \(X_2\) and \(X_3\). Which metal will give out electrons with greater kinetic energy for the same wavelength of incident radiation?</div>
+    <div class="options" id="opts-32">
+      <button class="option-btn" data-q="32" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(X_1\)</button>
+      <button class="option-btn" data-q="32" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(X_2\)</button>
+      <button class="option-btn" data-q="32" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(X_3\)</button>
+      <button class="option-btn" data-q="32" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>All metals give the same kinetic energies</button>
+    </div>
+    <div class="answer-feedback" id="fb-32"></div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="q-card" id="card-33">
+    <div class="q-number">Q33 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A slit of width \(a\) is illuminated by light of wavelength \(\lambda\). The linear separation between the 1st and 3rd minima in the diffraction pattern on a screen at distance \(D\) from the slit is:</div>
+    <div class="options" id="opts-33">
+      <button class="option-btn" data-q="33" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(D\lambda/a\)</button>
+      <button class="option-btn" data-q="33" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(1.5\,D\lambda/a\)</button>
+      <button class="option-btn" data-q="33" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(2\,D\lambda/a\)</button>
+      <button class="option-btn" data-q="33" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(3\,D\lambda/a\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-33"></div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="q-card" id="card-34">
+    <div class="q-number">Q34 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">String A (length 0.314 m, \(Y=2\times10^{11}\) N/m²) is connected in series to string B (length and \(Y\) both twice those of A). This combination is suspended from a rigid support and its free end is fixed to a load of mass 0.8 kg. The net change in length is ________ mm. (radius of both strings = 0.2 mm, \(g=10\) m/s²)</div>
+    <div class="options" id="opts-34">
+      <button class="option-btn" data-q="34" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>3</button>
+      <button class="option-btn" data-q="34" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>2</button>
+      <button class="option-btn" data-q="34" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>1.9</button>
+      <button class="option-btn" data-q="34" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>1</button>
+    </div>
+    <div class="answer-feedback" id="fb-34"></div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="q-card" id="card-35">
+    <div class="q-number">Q35 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">One gas of \(n_1\) moles at temperature \(T_1\), volume \(V_1\) and pressure \(P_1\), and another gas of \(n_2\) moles at \(T_2\), \(V_2\), \(P_2\), are mixed, resulting in pressure \(P\) and volume \(V\). The temperature of the mixture is:</div>
+    <div class="options" id="opts-35">
+      <button class="option-btn" data-q="35" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(\dfrac{T_1+T_2}{2}\)</button>
+      <button class="option-btn" data-q="35" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(\dfrac{T_1 T_2 PV}{T_1 P_2 V_2+T_2 P_1 V_1}\)</button>
+      <button class="option-btn" data-q="35" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(\dfrac{T_1 P_1 V_1+T_2 P_2 V_2}{T_1 T_2 PV}\)</button>
+      <button class="option-btn" data-q="35" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(\dfrac{|T_1-T_2|}{2}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-35"></div>
+  </div>
+
+  <!-- Q36 DROPPED -->
+  <div class="q-card dropped" id="card-36">
+    <div class="q-number">Q36 <span class="q-type-tag tag-mcq">MCQ</span> <span class="dropped-badge">DROPPED by NTA</span></div>
+    <div class="q-text">An ideal gas undergoes a process maintaining the relation \(P=P_0\!\left[1+\left(\dfrac{V_0}{V}\right)^2\right]^{-1}\). Two samples A and B (two moles each) with initial volumes \(V_0\) and \(3V_0\) attain the same pressure. \(T_B-T_A\) = ?</div>
+    <div class="q-text" style="color:var(--yellow);font-size:var(--fs-sm);font-weight:600;">⚠ This question was cancelled by NTA. It carries no marks.</div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="q-card" id="card-37">
+    <div class="q-number">Q37 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A voltmeter with internal resistance \(x\,\Omega\) can measure up to 20 V. To increase its measuring range to 30 V, the required modification is:</div>
+    <div class="options" id="opts-37">
+      <button class="option-btn" data-q="37" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Connect a resistor of \(x/2\;\Omega\) in series with the voltmeter</button>
+      <button class="option-btn" data-q="37" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Connect a resistor of \(x/2\;\Omega\) in parallel to the voltmeter</button>
+      <button class="option-btn" data-q="37" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Connect a resistor of \(x\;\Omega\) in series with the voltmeter</button>
+      <button class="option-btn" data-q="37" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Connect a resistor of \(2x\;\Omega\) in parallel to the voltmeter</button>
+    </div>
+    <div class="answer-feedback" id="fb-37"></div>
+  </div>
+
+  <!-- Q38 -->
+  <div class="q-card" id="card-38">
+    <div class="q-number">Q38 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Two 4-bit binary numbers \(A=1101\) and \(B=1010\) are given as inputs to a logic circuit (NOT gate applied to A, then AND with B). The output \(Y\) will be:</div>
+    <div class="options" id="opts-38">
+      <button class="option-btn" data-q="38" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Y = 0010</button>
+      <button class="option-btn" data-q="38" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Y = 1101</button>
+      <button class="option-btn" data-q="38" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Y = 0111</button>
+      <button class="option-btn" data-q="38" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Y = 1000</button>
+    </div>
+    <div class="answer-feedback" id="fb-38"></div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="q-card" id="card-39">
+    <div class="q-number">Q39 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A rod of length 10 cm lies along the principal axis of a concave mirror of focal length 10 cm, placed from 20 cm to 30 cm from the mirror. The length of the image is ________ cm.</div>
+    <div class="options" id="opts-39">
+      <button class="option-btn" data-q="39" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>2.5</button>
+      <button class="option-btn" data-q="39" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>5</button>
+      <button class="option-btn" data-q="39" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>7.5</button>
+      <button class="option-btn" data-q="39" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>7</button>
+    </div>
+    <div class="answer-feedback" id="fb-39"></div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="q-card" id="card-40">
+    <div class="q-number">Q40 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A parallel-plate air capacitor is connected to a battery. The plates are pulled apart at uniform speed \(v\). If \(x\) is the plate separation at any instant, then the time rate of change of electrostatic energy is proportional to \(x^\alpha\), where \(\alpha\) is:</div>
+    <div class="options" id="opts-40">
+      <button class="option-btn" data-q="40" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>−2</button>
+      <button class="option-btn" data-q="40" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>1</button>
+      <button class="option-btn" data-q="40" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>−1</button>
+      <button class="option-btn" data-q="40" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>2</button>
+    </div>
+    <div class="answer-feedback" id="fb-40"></div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="q-card" id="card-41">
+    <div class="q-number">Q41 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">An insulated wire forms a flat coil with \(N=200\) turns. The innermost turn radius is \(r_1=3\) cm and the outermost is \(r_2=6\) cm. If 20 mA current flows, the magnetic moment is \(\alpha\times10^{-2}\) A·m². The value of \(\alpha\) is:</div>
+    <div class="options" id="opts-41">
+      <button class="option-btn" data-q="41" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>4.4</button>
+      <button class="option-btn" data-q="41" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>2.64</button>
+      <button class="option-btn" data-q="41" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>3.25</button>
+      <button class="option-btn" data-q="41" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>1.2</button>
+    </div>
+    <div class="answer-feedback" id="fb-41"></div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="q-card" id="card-42">
+    <div class="q-number">Q42 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A circuit consists of a capacitor (20 µF), resistor (100 Ω) and two identical diodes (forward bias resistance = 10 Ω). The time constant is \(\alpha\times10^{-3}\) s. The value of \(\alpha\) is:</div>
+    <div class="options" id="opts-42">
+      <button class="option-btn" data-q="42" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>2.2</button>
+      <button class="option-btn" data-q="42" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>2.0</button>
+      <button class="option-btn" data-q="42" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>2.1</button>
+      <button class="option-btn" data-q="42" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>2.4</button>
+    </div>
+    <div class="answer-feedback" id="fb-42"></div>
+  </div>
+
+  <!-- Q43 -->
+  <div class="q-card" id="card-43">
+    <div class="q-number">Q43 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The voltage and the current between points A and B in a circuit (with multiple batteries and 3Ω resistors) are:</div>
+    <div class="options" id="opts-43">
+      <button class="option-btn" data-q="43" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>24 V, 12 A</button>
+      <button class="option-btn" data-q="43" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>24 V, 4 A</button>
+      <button class="option-btn" data-q="43" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>18 V, 12 A</button>
+      <button class="option-btn" data-q="43" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>27 V, 4 A</button>
+    </div>
+    <div class="answer-feedback" id="fb-43"></div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="q-card" id="card-44">
+    <div class="q-number">Q44 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A telescope with objective diameter \(R\) is used to observe a distant star emitting light of wavelength 500 nm, at a resolution of \(5\times10^{-7}\) radian. The value of \(R\) is ________ cm.</div>
+    <div class="options" id="opts-44">
+      <button class="option-btn" data-q="44" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>61</button>
+      <button class="option-btn" data-q="44" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>122</button>
+      <button class="option-btn" data-q="44" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>244</button>
+      <button class="option-btn" data-q="44" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>305</button>
+    </div>
+    <div class="answer-feedback" id="fb-44"></div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="q-card" id="card-45">
+    <div class="q-number">Q45 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Unpolarized light is incident on the plane interface of air and a dielectric medium. If the incident angle equals Brewster's angle, which expression represents the reflected wave?</div>
+    <div class="options" id="opts-45">
+      <button class="option-btn" data-q="45" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\((E_x\hat{i}+E_y\hat{j})\sin(kx-kz-\omega t)\)</button>
+      <button class="option-btn" data-q="45" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\((E_x\hat{i}+E_z\hat{k})\sin(kx+ky-\omega t)\)</button>
+      <button class="option-btn" data-q="45" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\((E_y\hat{j}+E_z\hat{k})\sin(ky+kz-\omega t)\)</button>
+      <button class="option-btn" data-q="45" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\((E_x\hat{i}+E_y\hat{j}+E_z\hat{k})\sin(kx+ky-kz-\omega t)\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-45"></div>
+  </div>
+
+  <!-- Physics Section B -->
+  <div class="subsection-label">Physics · Section B · Integer Type</div>
+
+  <!-- Q46 -->
+  <div class="q-card integer-type" id="card-46">
+    <div class="q-number">Q46 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">A 1 kg block is subjected to two simultaneous forces \((2\hat{i}+3\hat{j}+4\hat{k})\) N and \((3\hat{i}-\hat{j}-2\hat{k})\) N and moved 25 m along the \((3\hat{i}-4\hat{j})\) direction. The work done is ________ J.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-46" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(46)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-46"></div>
+  </div>
+
+  <!-- Q47 -->
+  <div class="q-card integer-type" id="card-47">
+    <div class="q-number">Q47 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">The surface tension of a soap solution is \(3.5\times10^{-2}\) N/m. The work required to increase the radius of a soap bubble from 1 cm to 2 cm is \(\alpha\times10^{-4}\) J. The value of \(\alpha\) is ________. (\(\pi=22/7\))</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-47" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(47)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-47"></div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="q-card integer-type" id="card-48">
+    <div class="q-number">Q48 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">The velocity of a particle executing simple harmonic motion along the \(x\)-axis is described as \(v^2=50-x^2\). If the time period of motion is \(x/7\) s, the value of \(x\) is ________.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-48" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(48)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-48"></div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="q-card integer-type" id="card-49">
+    <div class="q-number">Q49 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">A body of mass 2 kg begins to move under the influence of a time-dependent force \(\vec{F}=(2t\hat{i}+6t^2\hat{j})\) N. The power produced by the force at \(t=2\) s is ________ W.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-49" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(49)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-49"></div>
+  </div>
+
+  <!-- Q50 -->
+  <div class="q-card integer-type" id="card-50">
+    <div class="q-number">Q50 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">An inductor of 10 mH, capacitor of 0.1 µF and a resistor of 100 Ω are connected in series across 220 V, 70 Hz AC supply. The power factor of the circuit is 0.5. The difference in inductive reactance and capacitive reactance is \(\sqrt{3}\,\alpha\;\Omega\). The value of \(\alpha\) is ________.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-50" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(50)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-50"></div>
+  </div>
+
+  <!-- ══════════════ CHEMISTRY ══════════════ -->
+  <div class="section-heading">
+    <h2>Chemistry</h2>
+    <span class="pill pill-chemistry">Section A · MCQ</span>
+  </div>
+
+  <!-- Q51 -->
+  <div class="q-card" id="card-51">
+    <div class="q-number">Q51 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Number of moles and number of molecules in 1.4187 L of SO₂ at STP respectively are:</div>
+    <div class="options" id="opts-51">
+      <button class="option-btn" data-q="51" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>0.1266 ; 3.812×10²²</button>
+      <button class="option-btn" data-q="51" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>0.0633 ; 3.812×10²²</button>
+      <button class="option-btn" data-q="51" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>0.1266 ; 7.6238×10²²</button>
+      <button class="option-btn" data-q="51" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>0.0633 ; 7.6238×10²²</button>
+    </div>
+    <div class="answer-feedback" id="fb-51"></div>
+  </div>
+
+  <!-- Q52 -->
+  <div class="q-card" id="card-52">
+    <div class="q-number">Q52 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">What is the ratio of the wave number of the first line (lowest energy) of the Balmer series of the hydrogen atomic spectrum to the first line of the Brackett series?</div>
+    <div class="options" id="opts-52">
+      <button class="option-btn" data-q="52" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>5 : 1</button>
+      <button class="option-btn" data-q="52" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>5 : 0.81</button>
+      <button class="option-btn" data-q="52" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>5 : 1.75</button>
+      <button class="option-btn" data-q="52" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>5 : 27</button>
+    </div>
+    <div class="answer-feedback" id="fb-52"></div>
+  </div>
+
+  <!-- Q53 -->
+  <div class="q-card" id="card-53">
+    <div class="q-number">Q53 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Which is the correct set of 4 quantum numbers of the 19th electron in Chromium (Z = 24) according to the Aufbau principle?</div>
+    <div class="options" id="opts-53">
+      <button class="option-btn" data-q="53" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>n=3, l=2, m=+2, s=+1/2</button>
+      <button class="option-btn" data-q="53" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>n=3, l=2, m=−2, s=+1/2</button>
+      <button class="option-btn" data-q="53" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>n=4, l=1, m=0, s=+1/2</button>
+      <button class="option-btn" data-q="53" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>n=4, l=0, m=0, s=+1/2</button>
+    </div>
+    <div class="answer-feedback" id="fb-53"></div>
+  </div>
+
+  <!-- Q54 -->
+  <div class="q-card" id="card-54">
+    <div class="q-number">Q54 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text"><strong>Statement I:</strong> For an ideal gas, heat capacity at constant volume is always greater than the heat capacity at constant pressure.<br><strong>Statement II:</strong> In a constant volume process, no work is produced and all heat goes into the chaotic motion, reflected by a temperature increase of the ideal gas.</div>
+    <div class="options" id="opts-54">
+      <button class="option-btn" data-q="54" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Both Statements I and II are true</button>
+      <button class="option-btn" data-q="54" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Both Statements I and II are false</button>
+      <button class="option-btn" data-q="54" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Statement I is true but II is false</button>
+      <button class="option-btn" data-q="54" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Statement I is false but II is true</button>
+    </div>
+    <div class="answer-feedback" id="fb-54"></div>
+  </div>
+
+  <!-- Q55 -->
+  <div class="q-card" id="card-55">
+    <div class="q-number">Q55 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">At T(K), the equilibrium constant of \(\text{A}_2(g)+\text{B}_2(g)\rightleftharpoons\text{C}(g)\) is \(2.7\times10^{10}\). What is the equilibrium constant for \(\tfrac{1}{2}\text{A}_2(g)+\tfrac{1}{2}\text{B}_2(g)\rightleftharpoons\tfrac{1}{2}\text{C}(g)\) at the same temperature?</div>
+    <div class="options" id="opts-55">
+      <button class="option-btn" data-q="55" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\((2.7\times10^{10})^3\)</button>
+      <button class="option-btn" data-q="55" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(6\times10^{-2}\)</button>
+      <button class="option-btn" data-q="55" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(\sqrt{2.7\times10^{10}}\)</button>
+      <button class="option-btn" data-q="55" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(3\times10^{-2}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-55"></div>
+  </div>
+
+  <!-- Q56 -->
+  <div class="q-card" id="card-56">
+    <div class="q-number">Q56 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">To oxidise a mixture of 1 mole each of FeC₂O₄, Fe₂(C₂O₄)₃, FeSO₄ and Fe₂(SO₄)₃ in acidic medium, the number of moles of KMnO₄ required is:</div>
+    <div class="options" id="opts-56">
+      <button class="option-btn" data-q="56" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>3</button>
+      <button class="option-btn" data-q="56" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>2</button>
+      <button class="option-btn" data-q="56" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>5</button>
+      <button class="option-btn" data-q="56" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>7</button>
+    </div>
+    <div class="answer-feedback" id="fb-56"></div>
+  </div>
+
+  <!-- Q57 -->
+  <div class="q-card" id="card-57">
+    <div class="q-number">Q57 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">For the first order reaction \(R\to P\), the fraction of molecules decomposed can be expressed as:</div>
+    <div class="options" id="opts-57">
+      <button class="option-btn" data-q="57" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>\(1-e^{k_1 t}\)</button>
+      <button class="option-btn" data-q="57" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>\(1+e^{k_1 t}\)</button>
+      <button class="option-btn" data-q="57" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>\(1+e^{-k_1 t}\)</button>
+      <button class="option-btn" data-q="57" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>\(1-e^{-k_1 t}\)</button>
+    </div>
+    <div class="answer-feedback" id="fb-57"></div>
+  </div>
+
+  <!-- Q58 -->
+  <div class="q-card" id="card-58">
+    <div class="q-number">Q58 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">A monoatomic anion (A⁻) has 45 neutrons and 36 electrons. The atomic mass, group in the periodic table, and physical state at room temperature of element A respectively are:</div>
+    <div class="options" id="opts-58">
+      <button class="option-btn" data-q="58" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>80, 17, liquid</button>
+      <button class="option-btn" data-q="58" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>81, 16, solid</button>
+      <button class="option-btn" data-q="58" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>80, 16, gas</button>
+      <button class="option-btn" data-q="58" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>81, 15, gas</button>
+    </div>
+    <div class="answer-feedback" id="fb-58"></div>
+  </div>
+
+  <!-- Q59 -->
+  <div class="q-card" id="card-59">
+    <div class="q-number">Q59 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text"><strong>Statement I:</strong> The covalency of oxygen is generally two but can exceed up to four. The oxidation state of oxygen in SO₃ is −2 and in OF₂ it is +2.<br><strong>Statement II:</strong> The anomalous behaviour of oxygen compared to other Group 16 elements is due to its small size and high electronegativity.</div>
+    <div class="options" id="opts-59">
+      <button class="option-btn" data-q="59" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Both Statements I and II are true</button>
+      <button class="option-btn" data-q="59" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Both Statements I and II are false</button>
+      <button class="option-btn" data-q="59" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Statement I is true but II is false</button>
+      <button class="option-btn" data-q="59" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Statement I is false but II is true</button>
+    </div>
+    <div class="answer-feedback" id="fb-59"></div>
+  </div>
+
+  <!-- Q60 -->
+  <div class="q-card" id="card-60">
+    <div class="q-number">Q60 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The correct statements are:<br>
+    A. Mo(VI) and W(VI) are less stable than Cr(VI).<br>
+    B. Ce⁴⁺ and Tb⁴⁺ are oxidants while Eu²⁺ and Yb²⁺ are reductants.<br>
+    C. Cm and Am have seven unpaired electrons.<br>
+    D. Actinoid contraction is greater from element to element than lanthanoid contraction.</div>
+    <div class="options" id="opts-60">
+      <button class="option-btn" data-q="60" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>A and B Only</button>
+      <button class="option-btn" data-q="60" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>C and D Only</button>
+      <button class="option-btn" data-q="60" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>B and D Only</button>
+      <button class="option-btn" data-q="60" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>A and C Only</button>
+    </div>
+    <div class="answer-feedback" id="fb-60"></div>
+  </div>
+
+  <!-- Q61 -->
+  <div class="q-card" id="card-61">
+    <div class="q-number">Q61 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Correct statements are:<br>
+    A. Potassium dichromate oxidises FeSO₄ to Fe₂(SO₄)₃ in acidic medium.<br>
+    B. Sodium dichromate can be used as a primary standard in volumetric estimation.<br>
+    C. CrO₄²⁻ and Cr₂O₇²⁻ are interconvertible in aqueous solution by varying pH.<br>
+    D. The Cr–O–Cr bond angle in Cr₂O₇²⁻ is 126°.</div>
+    <div class="options" id="opts-61">
+      <button class="option-btn" data-q="61" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>A, B and C Only</button>
+      <button class="option-btn" data-q="61" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>A, C and D Only</button>
+      <button class="option-btn" data-q="61" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>A and C Only</button>
+      <button class="option-btn" data-q="61" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>B and D Only</button>
+    </div>
+    <div class="answer-feedback" id="fb-61"></div>
+  </div>
+
+  <!-- Q62 -->
+  <div class="q-card" id="card-62">
+    <div class="q-number">Q62 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Match the complex ion with its calculated spin-only magnetic moment (BM):<br>
+    A. [Cr(H₂O)₆]²⁺ &nbsp; B. [Co(H₂O)₆]²⁺ &nbsp; C. [Cu(H₂O)₆]²⁺ &nbsp; D. [Mn(H₂O)₆]²⁺<br>
+    I. 3.87 &nbsp; II. 5.92 &nbsp; III. 4.90 &nbsp; IV. 1.73</div>
+    <div class="options" id="opts-62">
+      <button class="option-btn" data-q="62" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>A-I, B-III, C-IV, D-II</button>
+      <button class="option-btn" data-q="62" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>A-II, B-I, C-III, D-IV</button>
+      <button class="option-btn" data-q="62" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>A-IV, B-II, C-I, D-III</button>
+      <button class="option-btn" data-q="62" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>A-III, B-I, C-IV, D-II</button>
+    </div>
+    <div class="answer-feedback" id="fb-62"></div>
+  </div>
+
+  <!-- Q63 -->
+  <div class="q-card" id="card-63">
+    <div class="q-number">Q63 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Increasing order of electron-withdrawing power of the following functional groups:<br>
+    a. −CN &emsp; b. −COOH &emsp; c. −NO₂ &emsp; d. −I</div>
+    <div class="options" id="opts-63">
+      <button class="option-btn" data-q="63" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>c &lt; b &lt; d &lt; a</button>
+      <button class="option-btn" data-q="63" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>c &lt; a &lt; b &lt; d</button>
+      <button class="option-btn" data-q="63" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>d &lt; b &lt; a &lt; c</button>
+      <button class="option-btn" data-q="63" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>a &lt; b &lt; c &lt; d</button>
+    </div>
+    <div class="answer-feedback" id="fb-63"></div>
+  </div>
+
+  <!-- Q64 -->
+  <div class="q-card" id="card-64">
+    <div class="q-number">Q64 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">An alkene (X) on ozonolysis followed by reduction gives: HCHO (2 moles), OHC–CO–CHO, and CH₃–CO–CO–CH₃. The alkene X has the structure that corresponds to option:</div>
+    <div class="options" id="opts-64">
+      <button class="option-btn" data-q="64" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Option A</button>
+      <button class="option-btn" data-q="64" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Option B</button>
+      <button class="option-btn" data-q="64" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Option C</button>
+      <button class="option-btn" data-q="64" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Option D</button>
+    </div>
+    <div class="answer-feedback" id="fb-64"></div>
+  </div>
+
+  <!-- Q65 -->
+  <div class="q-card" id="card-65">
+    <div class="q-number">Q65 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Match the reaction name with the reagent/catalyst:<br>
+    A. Finkelstein &emsp; B. Swarts &emsp; C. Sandmeyer's &emsp; D. Fittig<br>
+    I. SbF₃ &emsp; II. Na, dry ether &emsp; III. NaI &emsp; IV. Cu₂Cl₂</div>
+    <div class="options" id="opts-65">
+      <button class="option-btn" data-q="65" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>A-I, B-IV, C-III, D-II</button>
+      <button class="option-btn" data-q="65" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>A-III, B-I, C-IV, D-II</button>
+      <button class="option-btn" data-q="65" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>A-IV, B-II, C-I, D-III</button>
+      <button class="option-btn" data-q="65" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>A-I, B-III, C-II, D-IV</button>
+    </div>
+    <div class="answer-feedback" id="fb-65"></div>
+  </div>
+
+  <!-- Q66 -->
+  <div class="q-card" id="card-66">
+    <div class="q-number">Q66 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Amongst the following organic compounds, the total number soluble in aqueous NaOH at room temperature is: benzaldehyde, β-naphthol, para-aminophenol, para-cresol, benzoic acid, N-cyclohexylamine, naphthalene-2-carboxylic acid, di-t-butylphenol, 2-naphthol.</div>
+    <div class="options" id="opts-66">
+      <button class="option-btn" data-q="66" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>5</button>
+      <button class="option-btn" data-q="66" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>4</button>
+      <button class="option-btn" data-q="66" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>6</button>
+      <button class="option-btn" data-q="66" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>3</button>
+    </div>
+    <div class="answer-feedback" id="fb-66"></div>
+  </div>
+
+  <!-- Q67 -->
+  <div class="q-card" id="card-67">
+    <div class="q-number">Q67 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">The reaction sequence: Aniline → (Br₂/H₂O) → A (major product) → (NaNO₂/HCl, 273–278 K) → B → (i) HBF₄, (ii) NaNO₂, Cu, Δ → C.<br>Product C is:</div>
+    <div class="options" id="opts-67">
+      <button class="option-btn" data-q="67" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>1-Bromo-4-nitrobenzene</button>
+      <button class="option-btn" data-q="67" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>1,3,5-Tribromo-2-nitrobenzene</button>
+      <button class="option-btn" data-q="67" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>4-Bromo-1-nitrobenzene</button>
+      <button class="option-btn" data-q="67" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>1,3,5-Tribromobenzene</button>
+    </div>
+    <div class="answer-feedback" id="fb-67"></div>
+  </div>
+
+  <!-- Q68 -->
+  <div class="q-card" id="card-68">
+    <div class="q-number">Q68 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text"><strong>Statement I:</strong> Maltose is a non-reducing sugar.<br><strong>Statement II:</strong> Lactose is a reducing sugar.</div>
+    <div class="options" id="opts-68">
+      <button class="option-btn" data-q="68" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Both Statements I and II are true</button>
+      <button class="option-btn" data-q="68" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Both Statements I and II are false</button>
+      <button class="option-btn" data-q="68" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Statement I is true but II is false</button>
+      <button class="option-btn" data-q="68" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Statement I is false but II is true</button>
+    </div>
+    <div class="answer-feedback" id="fb-68"></div>
+  </div>
+
+  <!-- Q69 -->
+  <div class="q-card" id="card-69">
+    <div class="q-number">Q69 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">Match the amino acid name with its one-letter symbol / essential/non-essential type:<br>
+    A. Arginine &emsp; B. Aspartic acid &emsp; C. Lysine &emsp; D. Glutamic acid<br>
+    I. D / Non-essential &emsp; II. R / Essential &emsp; III. E / Non-essential &emsp; IV. K / Essential</div>
+    <div class="options" id="opts-69">
+      <button class="option-btn" data-q="69" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>A-II, B-I, C-IV, D-III</button>
+      <button class="option-btn" data-q="69" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>A-IV, B-III, C-II, D-I</button>
+      <button class="option-btn" data-q="69" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>A-III, B-IV, C-I, D-II</button>
+      <button class="option-btn" data-q="69" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>A-II, B-IV, C-I, D-III</button>
+    </div>
+    <div class="answer-feedback" id="fb-69"></div>
+  </div>
+
+  <!-- Q70 -->
+  <div class="q-card" id="card-70">
+    <div class="q-number">Q70 <span class="q-type-tag tag-mcq">MCQ</span></div>
+    <div class="q-text">In the synthesis of phenolphthalein: 2 phenol + phthalic anhydride → (conc. H₂SO₄) → intermediate → (NaOH) → pink compound → (excess NaOH) → compound X. The colour of compound X is:</div>
+    <div class="options" id="opts-70">
+      <button class="option-btn" data-q="70" data-idx="0" onclick="selectOpt(this)"><span class="opt-label">A</span>Violet</button>
+      <button class="option-btn" data-q="70" data-idx="1" onclick="selectOpt(this)"><span class="opt-label">B</span>Green</button>
+      <button class="option-btn" data-q="70" data-idx="2" onclick="selectOpt(this)"><span class="opt-label">C</span>Red</button>
+      <button class="option-btn" data-q="70" data-idx="3" onclick="selectOpt(this)"><span class="opt-label">D</span>Colourless</button>
+    </div>
+    <div class="answer-feedback" id="fb-70"></div>
+  </div>
+
+  <!-- Chemistry Section B -->
+  <div class="subsection-label">Chemistry · Section B · Integer Type</div>
+
+  <!-- Q71 -->
+  <div class="q-card integer-type" id="card-71">
+    <div class="q-number">Q71 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">According to Lewis theory, the total number of σ bond-pairs and lone pair of electrons around the central atom of XeO₃F₂ ion is ________.</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-71" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(71)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-71"></div>
+  </div>
+
+  <!-- Q72 -->
+  <div class="q-card integer-type" id="card-72">
+    <div class="q-number">Q72 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">Benzene → (i) CH₃Cl/anhydrous AlCl₃, (ii) Cl₂/FeCl₃, (iii) K₂Cr₂O₇/H₂SO₄ → X (major product). P g of X is reacted with NaHCO₃ to liberate a gas occupying 11.2 dm³ at STP. P = ________ g. (Molar masses: H=1, C=12, O=16, Cl=35.5)</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-72" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(72)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-72"></div>
+  </div>
+
+  <!-- Q73 -->
+  <div class="q-card integer-type" id="card-73">
+    <div class="q-number">Q73 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">2.0 g of a bromohydrocarbon (X) subjected to Carius analysis gave 3.36 g of AgBr. The percentage of carbon in compound X is 26.7%. The total number of carbon atoms in the empirical formula of X is ________. (Molar masses: H=1, C=12, Br=80, Ag=108)</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-73" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(73)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-73"></div>
+  </div>
+
+  <!-- Q74 -->
+  <div class="q-card integer-type" id="card-74">
+    <div class="q-number">Q74 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">The pH of a solution obtained by mixing 5 mL of 0.1 M NH₄OH solution with 250 mL of 0.1 M NH₄Cl solution is ________ × 10⁻². (Nearest integer) [p\(K_b\)(NH₄OH) = 4.74, log 2 = 0.30, log 3 = 0.48, log 5 = 0.70]</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-74" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(74)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-74"></div>
+  </div>
+
+  <!-- Q75 -->
+  <div class="q-card integer-type" id="card-75">
+    <div class="q-number">Q75 <span class="q-type-tag tag-int">INTEGER</span></div>
+    <div class="q-text">A non-volatile, non-electrolyte solid solute dissolved in 40 g of a solvent decreases the vapour pressure from 760 mm Hg to 750 mm Hg. If the same solution boils at 320 K, the number of moles of solvent in the solution is ________. (Nearest integer) [boiling point of pure solvent = 319.5 K, \(K_b\) = 0.3 K kg mol⁻¹]</div>
+    <div class="int-input-wrap">
+      <input class="int-input" type="number" id="int-75" placeholder="Enter integer" />
+      <button class="option-btn" style="width:auto;padding:10px 18px;" onclick="checkInt(75)">Check</button>
+    </div>
+    <div class="answer-feedback" id="fb-75"></div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ═══════════════ SUBMIT BAR ═══════════════ -->
+<div class="submit-bar">
+  <div class="attempted-count">Answered: <strong id="attemptedCount">0</strong> / 74</div>
+  <button class="btn-submit" id="btnSubmit" onclick="submitQuiz()">Submit Quiz</button>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   DATA  — correct answers
+   MCQ: correct option index (0-based A=0,B=1,C=2,D=3)
+   INT: correct integer value
+   DROPPED: null (Q36)
+═══════════════════════════════════════════════════════ */
+const ANSWERS = {
+  1:0, 2:1, 3:0, 4:1, 5:3, 6:3, 7:0, 8:3, 9:1, 10:3,
+  11:0, 12:2, 13:1, 14:1, 15:1, 16:2, 17:2, 18:1, 19:1, 20:2,
+  21:9, 22:3, 23:2, 24:3, 25:3,
+  26:3, 27:1, 28:2, 29:2, 30:1, 31:1, 32:0, 33:2, 34:1, 35:1,
+  36:null, // DROPPED
+  37:0, 38:0, 39:1, 40:0, 41:1, 42:0, 43:1, 44:1, 45:0,
+  46:35, 47:264, 48:44, 49:200, 50:100,
+  51:1, 52:1, 53:3, 54:3, 55:3, 56:1, 57:3, 58:0, 59:0, 60:2,
+  61:1, 62:3, 63:2, 64:3, 65:1, 66:0, 67:1, 68:3, 69:0, 70:3,
+  71:6, 72:78, 73:5, 74:756, 75:5
+};
+
+// MCQ question numbers
+const MCQ_QS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+  26,27,28,29,30,31,32,33,34,35,37,38,39,40,41,42,43,44,45,
+  51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70];
+// Integer question numbers
+const INT_QS = [21,22,23,24,25,46,47,48,49,50,71,72,73,74,75];
+// Dropped
+const DROPPED_QS = [36];
+
+const state = {}; // { qNum: { answered: bool, correct: bool } }
+let submitted = false;
+
+/* ── Select MCQ option ── */
+function selectOpt(btn) {
+  if (submitted) return;
+  const q = parseInt(btn.dataset.q);
+  const idx = parseInt(btn.dataset.idx);
+  const opts = document.querySelectorAll(`#opts-${q} .option-btn`);
+  opts.forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  btn.dataset.chosen = idx;
+  state[q] = { answered: true, chosen: idx };
+  updateAttempted();
+  updateProgress();
+}
+
+/* ── Check integer ── */
+function checkInt(q) {
+  if (submitted) return;
+  const inp = document.getElementById(`int-${q}`);
+  const val = parseInt(inp.value);
+  if (isNaN(val)) return;
+  state[q] = { answered: true, chosen: val };
+  updateAttempted();
+  updateProgress();
+  // live feedback for integer
+  const correct = ANSWERS[q];
+  const fb = document.getElementById(`fb-${q}`);
+  inp.classList.remove('int-correct','int-wrong');
+  if (val === correct) {
+    inp.classList.add('int-correct');
+    fb.textContent = '✓ Correct! Answer: ' + correct;
+    fb.className = 'answer-feedback fb-correct show';
+  } else {
+    inp.classList.add('int-wrong');
+    fb.textContent = '✗ Incorrect. Correct answer: ' + correct;
+    fb.className = 'answer-feedback fb-wrong show';
+  }
+  inp.disabled = true;
+  document.querySelector(`#card-${q} button`).disabled = true;
+}
+
+/* ── Count answered ── */
+function updateAttempted() {
+  const count = Object.keys(state).length;
+  document.getElementById('attemptedCount').textContent = count;
+}
+
+/* ── Progress bar ── */
+function updateProgress() {
+  const total = MCQ_QS.length + INT_QS.length; // 74 answerable
+  const done  = Object.keys(state).length;
+  document.getElementById('progressFill').style.width = (done / total * 100) + '%';
+}
+
+/* ── Submit ── */
+function submitQuiz() {
+  if (submitted) return;
+  submitted = true;
+  document.getElementById('btnSubmit').disabled = true;
+
+  let correct = 0, wrong = 0, skipped = 0;
+  let totalMarks = 0;
+
+  // Grade MCQs
+  MCQ_QS.forEach(q => {
+    const s = state[q];
+    const opts = document.querySelectorAll(`#opts-${q} .option-btn`);
+    const correctIdx = ANSWERS[q];
+    opts.forEach(b => b.disabled = true);
+    opts[correctIdx].classList.add('reveal-correct');
+
+    const fb = document.getElementById(`fb-${q}`);
+    if (!s || !s.answered) {
+      skipped++;
+      fb.textContent = 'Skipped. Correct answer: ' + String.fromCharCode(65 + correctIdx);
+      fb.className = 'answer-feedback fb-skip show';
+    } else if (s.chosen === correctIdx) {
+      correct++;
+      totalMarks += 4;
+      opts[s.chosen].classList.add('correct');
+      fb.textContent = '✓ Correct! +4 marks';
+      fb.className = 'answer-feedback fb-correct show';
+    } else {
+      wrong++;
+      totalMarks -= 1;
+      opts[s.chosen].classList.add('wrong');
+      opts[correctIdx].classList.remove('reveal-correct');
+      opts[correctIdx].classList.add('correct');
+      fb.textContent = '✗ Wrong. –1 mark. Correct: ' + String.fromCharCode(65 + correctIdx);
+      fb.className = 'answer-feedback fb-wrong show';
+    }
+    document.getElementById(`card-${q}`).classList.add('answered');
+  });
+
+  // Grade Integers
+  INT_QS.forEach(q => {
+    const s = state[q];
+    const correctVal = ANSWERS[q];
+    const fb = document.getElementById(`fb-${q}`);
+    const inp = document.getElementById(`int-${q}`);
+    if (inp) inp.disabled = true;
+
+    if (!s || !s.answered) {
+      skipped++;
+      fb.textContent = 'Skipped. Correct answer: ' + correctVal;
+      fb.className = 'answer-feedback fb-skip show';
+    } else {
+      // already graded live; re-tally
+      if (s.chosen === correctVal) {
+        correct++;
+        totalMarks += 4;
+      }
+      // integers have no negative marking — already handled
+    }
+    document.getElementById(`card-${q}`).classList.add('answered');
+  });
+
+  // Show score strip
+  const strip = document.getElementById('scoreStrip');
+  strip.classList.add('visible');
+  document.getElementById('chipCorrect').textContent = '✓ ' + correct;
+  document.getElementById('chipWrong').textContent   = '✗ ' + wrong;
+  document.getElementById('chipScore').textContent   = totalMarks + ' / 300';
+
+  // Populate result panel
+  document.getElementById('finalScore').textContent  = totalMarks;
+  document.getElementById('resCorrect').textContent  = correct;
+  document.getElementById('resWrong').textContent    = wrong;
+  document.getElementById('resSkipped').textContent  = skipped;
+  const attempted = correct + wrong;
+  document.getElementById('resAccuracy').textContent = attempted ? Math.round(correct/attempted*100)+'%' : '—';
+
+  const panel = document.getElementById('resultPanel');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  setTimeout(() => {
+    const pct = Math.max(0, totalMarks) / 300 * 100;
+    document.getElementById('scoreBarFill').style.width = pct + '%';
+  }, 300);
+}
+
+/* ── Reset ── */
+function resetQuiz() {
+  submitted = false;
+  Object.keys(state).forEach(k => delete state[k]);
+  document.getElementById('btnSubmit').disabled = false;
+  document.getElementById('attemptedCount').textContent = '0';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('scoreBarFill').style.width = '0%';
+  document.getElementById('scoreStrip').classList.remove('visible');
+  document.getElementById('resultPanel').classList.remove('show');
+
+  MCQ_QS.forEach(q => {
+    const opts = document.querySelectorAll(`#opts-${q} .option-btn`);
+    opts.forEach(b => {
+      b.disabled = false;
+      b.classList.remove('selected','correct','wrong','reveal-correct');
+    });
+    const fb = document.getElementById(`fb-${q}`);
+    fb.className = 'answer-feedback';
+    fb.textContent = '';
+    document.getElementById(`card-${q}`).classList.remove('answered');
+  });
+
+  INT_QS.forEach(q => {
+    const inp = document.getElementById(`int-${q}`);
+    if (inp) { inp.disabled = false; inp.value = ''; inp.classList.remove('int-correct','int-wrong'); }
+    const btn = document.querySelector(`#card-${q} button`);
+    if (btn) btn.disabled = false;
+    const fb = document.getElementById(`fb-${q}`);
+    fb.className = 'answer-feedback';
+    fb.textContent = '';
+    document.getElementById(`card-${q}`).classList.remove('answered');
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
