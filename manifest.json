@@ -1,0 +1,27 @@
+{
+  "name": "MegNEETJEE",
+  "short_name": "MegNEETJEE",
+  "description": "Free NEET & JEE Mock Tests for Meghalaya aspirants",
+  "start_url": "/MegNEETJEE-2/",
+  "scope": "/MegNEETJEE-2/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/MegNEETJEE-2/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/MegNEETJEE-2/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education"],
+  "lang": "en"
+}
