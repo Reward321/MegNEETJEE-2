@@ -533,3 +533,147 @@ const allQuestions=[
 {no:128,subject:"Botany",q:"Movement and accumulation of ions across a membrane against their concentration gradient can be explained by:",opts:["Active Transport","Osmosis","Facilitated Diffusion","Passive Transport"],ans:0},
 {no:129,subject:"Botany",q:"Axile placentation is observed in:",opts:["China rose, Petunia and Lemon","Mustard, Cucumber and Primrose","China rose, Beans and Lupin","Tomato, Dianthus and Pea"],ans:0},
 {no:130,subject:"Botany",q:"Identify the correct statements:\nA. Detrivores perform fragmentation.\nB. The humus is further degraded by some 
+  const userAnswers = new Array(allQuestions.length).fill(null);
+let submitted = false;
+
+function buildQuiz() {
+  const area = document.getElementById('questionsArea');
+  area.innerHTML = '';
+  let lastSubject = '';
+  const labels = ['A','B','C','D'];
+  const subjectRanges = {
+    'Physics':   'Q1–50',
+    'Chemistry': 'Q51–100',
+    'Botany':    'Q101–150',
+    'Zoology':   'Q151–200'
+  };
+
+  allQuestions.forEach((q, idx) => {
+    if (q.subject !== lastSubject) {
+      lastSubject = q.subject;
+      const sh = document.createElement('div');
+      sh.className = 'section-heading';
+      const subj = q.subject.toLowerCase();
+      const pillClass = (subj === 'botany' || subj === 'zoology') ? 'biology' : subj;
+      sh.innerHTML = `<h2>${q.subject}</h2><span class="pill pill-${pillClass}">${subjectRanges[q.subject]}</span>`;
+      area.appendChild(sh);
+    }
+
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `qcard-${idx}`;
+
+    card.innerHTML = `
+      <div class="q-number">${q.subject.toUpperCase()} · Q${q.no}</div>
+      <div class="q-text">${q.q.replace(/\n/g,'<br>')}</div>
+      <div class="options" id="opts-${idx}">
+        ${q.opts.map((opt, oi) => `
+          <button class="option-btn" id="opt-${idx}-${oi}" onclick="selectAnswer(${idx}, ${oi})">
+            <span class="opt-label">${labels[oi]}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="answer-feedback" id="fb-${idx}"></div>
+    `;
+    area.appendChild(card);
+  });
+}
+
+function selectAnswer(qIdx, optIdx) {
+  if (submitted) return;
+  userAnswers[qIdx] = optIdx;
+  const btns = document.querySelectorAll(`#opts-${qIdx} .option-btn`);
+  btns.forEach((btn, i) => {
+    btn.classList.remove('selected');
+    if (i === optIdx) btn.classList.add('selected');
+  });
+  document.getElementById(`qcard-${qIdx}`).classList.add('answered');
+  updateProgress();
+}
+
+function updateProgress() {
+  const attempted = userAnswers.filter(a => a !== null).length;
+  document.getElementById('attemptedCount').textContent = attempted;
+  const pct = (attempted / allQuestions.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function submitQuiz() {
+  if (submitted) return;
+  submitted = true;
+  document.getElementById('submitBtn').disabled = true;
+
+  let correct = 0, wrong = 0, skipped = 0;
+  const labels = ['A','B','C','D'];
+
+  allQuestions.forEach((q, idx) => {
+    const userAns = userAnswers[idx];
+    const correctAns = q.ans;
+    const opts = document.querySelectorAll(`#opts-${idx} .option-btn`);
+    opts.forEach(btn => btn.disabled = true);
+    opts[correctAns].classList.add('reveal-correct');
+
+    const fb = document.getElementById(`fb-${idx}`);
+    if (userAns === null) {
+      skipped++;
+      fb.className = 'answer-feedback show skip-fb';
+      fb.textContent = `⊘ Skipped — Correct answer: ${labels[correctAns]}`;
+    } else if (userAns === correctAns) {
+      correct++;
+      opts[userAns].classList.remove('selected');
+      opts[userAns].classList.add('correct');
+      fb.className = 'answer-feedback show correct-fb';
+      fb.textContent = `✓ Correct! +4 marks`;
+    } else {
+      wrong++;
+      opts[userAns].classList.remove('selected');
+      opts[userAns].classList.add('wrong');
+      fb.className = 'answer-feedback show wrong-fb';
+      fb.textContent = `✗ Wrong (You chose ${labels[userAns]}, Correct: ${labels[correctAns]}) — −1 mark`;
+    }
+  });
+
+  const score = correct * 4 - wrong * 1;
+  const accuracy = ((correct / (correct + wrong || 1)) * 100).toFixed(1);
+
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('resCorrect').textContent = correct;
+  document.getElementById('resWrong').textContent = wrong;
+  document.getElementById('resSkipped').textContent = skipped;
+  document.getElementById('resPos').textContent = '+' + (correct * 4);
+  document.getElementById('resNeg').textContent = '-' + wrong;
+  document.getElementById('resAcc').textContent = accuracy + '%';
+
+  const pct = Math.max(0, (score / 720) * 100);
+  document.getElementById('percentileFill').style.width = '0%';
+  document.getElementById('resultPanel').classList.add('show');
+  document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth' });
+
+  document.getElementById('miniScore').style.display = 'flex';
+  document.getElementById('miniCorrect').textContent = correct;
+  document.getElementById('miniWrong').textContent = wrong;
+  document.getElementById('miniTotal').textContent = score;
+
+  setTimeout(() => {
+    document.getElementById('percentileFill').style.width = pct + '%';
+    document.getElementById('percentileLabel').textContent = `${pct.toFixed(1)}% of maximum marks achieved`;
+  }, 300);
+}
+
+function resetQuiz() {
+  submitted = false;
+  userAnswers.fill(null);
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('resultPanel').classList.remove('show');
+  document.getElementById('miniScore').style.display = 'none';
+  updateProgress();
+  buildQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+buildQuiz();
+updateProgress();
+</script>
+</body>
+</html>
