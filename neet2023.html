@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="shared-1.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEET 2023 — Full Question Paper</title>
+<style>
+.diagram-wrap{display:flex;justify-content:center;margin:12px 0 6px;}
+.diagram-wrap svg{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:8px;max-width:100%;}
+</style>
+</head>
+<body data-theme="dark">
+<header>
+  <div class="logo">NEET<span> 2023</span></div>
+  <div class="header-right">
+    <div class="scoreboard-mini" id="miniScore" style="display:none">
+      <div class="score-chip green">✓ <span id="miniCorrect">0</span></div>
+      <div class="score-chip red">✗ <span id="miniWrong">0</span></div>
+      <div class="score-chip total">Score: <span id="miniTotal">0</span></div>
+    </div>
+  </div>
+</header>
+<div class="container" id="quizContainer">
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-panel" id="resultPanel">
+    <h2>🎯 Your Result</h2>
+    <div class="final-score" id="finalScore">0</div>
+    <div class="out-of">out of 720</div>
+    <div class="percentile-bar"><div class="percentile-fill" id="percentileFill"></div></div>
+    <div id="percentileLabel" style="font-size:0.82rem;color:var(--muted);margin-bottom:8px"></div>
+    <div class="result-grid">
+      <div class="result-stat"><div class="label">Correct</div><div class="value g" id="resCorrect">0</div></div>
+      <div class="result-stat"><div class="label">Wrong</div><div class="value r" id="resWrong">0</div></div>
+      <div class="result-stat"><div class="label">Skipped</div><div class="value y" id="resSkipped">0</div></div>
+      <div class="result-stat"><div class="label">+4 Marks</div><div class="value g" id="resPos">0</div></div>
+      <div class="result-stat"><div class="label">−1 Marks</div><div class="value r" id="resNeg">0</div></div>
+      <div class="result-stat"><div class="label">Accuracy</div><div class="value" id="resAcc">0%</div></div>
+    </div>
+    <button class="btn-reset" onclick="resetQuiz()">🔄 Retake Test</button>
+  </div>
+  <div id="questionsArea"></div>
+</div>
+<div class="submit-bar" id="submitBar">
+  <span class="attempted-count">Attempted: <strong id="attemptedCount">0</strong> / 200</span>
+  <button class="btn-submit" id="submitBtn" onclick="submitQuiz()">Submit Test</button>
+</div>
+<script>
+const D = {};
+
+// Q3 galvanometer circuit
+D[3]=`<svg viewBox="0 0 380 160" width="380" height="160" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#7d8590"/></marker></defs>
+<line x1="40" y1="30" x2="340" y2="30" stroke="#58a6ff" stroke-width="2"/>
+<line x1="40" y1="130" x2="340" y2="130" stroke="#58a6ff" stroke-width="2"/>
+<line x1="40" y1="30" x2="40" y2="130" stroke="#58a6ff" stroke-width="2"/>
+<line x1="340" y1="30" x2="340" y2="130" stroke="#58a6ff" stroke-width="2"/>
+<rect x="100" y="22" width="60" height="16" rx="3" fill="none" stroke="#bc8cff" stroke-width="1.5"/>
+<text x="118" y="34" fill="#bc8cff" font-size="11" font-family="monospace">400Ω</text>
+<circle cx="268" cy="30" r="12" fill="none" stroke="#3fb950" stroke-width="1.8"/>
+<text x="263" y="34" fill="#3fb950" font-size="11" font-family="monospace">G</text>
+<line x1="190" y1="30" x2="190" y2="58" stroke="#58a6ff" stroke-width="1.8"/>
+<rect x="180" y="58" width="20" height="44" rx="3" fill="none" stroke="#f0a500" stroke-width="1.8"/>
+<text x="195" y="83" fill="#f0a500" font-size="11" font-family="monospace">R</text>
+<line x1="190" y1="102" x2="190" y2="130" stroke="#58a6ff" stroke-width="1.8"/>
+<line x1="28" y1="72" x2="52" y2="72" stroke="#e6edf3" stroke-width="2.5"/>
+<line x1="31" y1="80" x2="49" y2="80" stroke="#e6edf3" stroke-width="1.2"/>
+<text x="12" y="76" fill="#f0a500" font-size="11" font-family="monospace">10V</text>
+<line x1="328" y1="72" x2="352" y2="72" stroke="#e6edf3" stroke-width="2.5"/>
+<line x1="331" y1="80" x2="349" y2="80" stroke="#e6edf3" stroke-width="1.2"/>
+<text x="353" y="76" fill="#f0a500" font-size="11" font-family="monospace">2V</text>
+<circle cx="190" cy="30" r="3.5" fill="#e6edf3"/>
+<circle cx="190" cy="130" r="3.5" fill="#e6edf3"/>
+</svg>`;
+
+// Q21 Kirchhoff circuit
+D[21]=`<svg viewBox="0 0 440 180" width="440" height="180" xmlns="http://www.w3.org/2000/svg">
+<circle cx="30" cy="60" r="4" fill="#e6edf3"/>
+<text x="12" y="64" fill="#e6edf3" font-size="13" font-family="monospace" font-weight="bold">A</text>
+<circle cx="410" cy="60" r="4" fill="#e6edf3"/>
+<text x="416" y="64" fill="#e6edf3" font-size="13" font-family="monospace" font-weight="bold">B</text>
+<circle cx="410" cy="150" r="4" fill="#e6edf3"/>
+<text x="416" y="154" fill="#e6edf3" font-size="13" font-family="monospace" font-weight="bold">C</text>
+<circle cx="30" cy="150" r="4" fill="#e6edf3"/>
+<text x="12" y="154" fill="#e6edf3" font-size="13" font-family="monospace" font-weight="bold">D</text>
+<line x1="34" y1="60" x2="80" y2="60" stroke="#58a6ff" stroke-width="2"/>
+<rect x="80" y="52" width="32" height="16" rx="3" fill="none" stroke="#bc8cff" stroke-width="1.5"/>
+<text x="86" y="64" fill="#bc8cff" font-size="10" font-family="monospace">2Ω</text>
+<line x1="112" y1="60" x2="148" y2="60" stroke="#58a6ff" stroke-width="2"/>
+<line x1="148" y1="52" x2="148" y2="68" stroke="#e6edf3" stroke-width="2.5"/>
+<line x1="155" y1="55" x2="155" y2="65" stroke="#e6edf3" stroke-width="1.2"/>
+<text x="140" y="48" fill="#f0a500" font-size="10" font-family="monospace">10V</text>
+<line x1="155" y1="60" x2="195" y2="60" stroke="#58a6ff" stroke-width="2"/>
+<circle cx="212" cy="60" r="4" fill="#f0a500"/>
+<text x="206" y="48" fill="#f0a500" font-size="11" font-family="monospace">E</text>
+<line x1="216" y1="60" x2="240" y2="60" stroke="#58a6ff" stroke-width="2"/>
+<line x1="240" y1="52" x2="240" y2="68" stroke="#e6edf3" stroke-width="2.5"/>
+<line x1="247" y1="55" x2="247" y2="65" stroke="#e6edf3" stroke-width="1.2"/>
+<text x="234" y="48" fill="#f0a500" font-size="10" font-family="monospace">5V</text>
+<line x1="247" y1="60" x2="286" y2="60" stroke="#58a6ff" stroke-width="2"/>
+<rect x="286" y="52" width="32" height="16" rx="3" fill="none" stroke="#bc8cff" stroke-width="1.5"/>
+<text x="292" y="64" fill="#bc8cff" font-size="10" font-family="monospace">1Ω</text>
+<line x1="318" y1="60" x2="406" y2="60" stroke="#58a6ff" stroke-width="2"/>
+<line x1="34" y1="150" x2="150" y2="150" stroke="#58a6ff" stroke-width="2"/>
+<rect x="150" y="142" width="110" height="16" rx="3" fill="none" stroke="#bc8cff" stroke-width="1.5"/>
+<text x="192" y="154" fill="#bc8cff" font-size="10" font-family="monospace">7Ω</text>
+<line x1="260" y1="150" x2="406" y2="150" stroke="#58a6ff" stroke-width="2"/>
+<line x1="30" y1="64" x2="30" y2="146" stroke="#58a6ff" stroke-width="2"/>
+<line x1="410" y1="64" x2="410" y2="146" stroke="#58a6ff" stroke-width="2"/>
+</svg>`;
+
+// Q25 projectile
+D[25]=`<svg viewBox="0 0 320 160" width="320" height="160" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a25" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#3fb950"/></marker></defs>
+<line x1="20" y1="138" x2="300" y2="138" stroke="#444c56" stroke-width="2"/>
+<path d="M 30,138 Q 165,14 300,138" fill="none" stroke="#58a6ff" stroke-width="2" stroke-dasharray="6,3"/>
+<rect x="10" y="126" width="28" height="14" rx="2" fill="#30363d" stroke="#58a6ff" stroke-width="1"/>
+<line x1="32" y1="130" x2="54" y2="116" stroke="#7d8590" stroke-width="3" stroke-linecap="round"/>
+<path d="M44,138 A18,18 0 0,1 57,121" fill="none" stroke="#f0a500" stroke-width="1.5"/>
+<text x="50" y="136" fill="#f0a500" font-size="10" font-family="monospace">30°</text>
+<line x1="32" y1="130" x2="78" y2="106" stroke="#3fb950" stroke-width="2" marker-end="url(#a25)"/>
+<text x="80" y="104" fill="#3fb950" font-size="10" font-family="monospace">280 m/s</text>
+<line x1="165" y1="16" x2="165" y2="138" stroke="#f85149" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="168" y="82" fill="#f85149" font-size="10" font-family="monospace">H_max</text>
+<text x="22" y="155" fill="#7d8590" font-size="9" font-family="monospace">g=9.8 m/s², sin30°=0.5</text>
+</svg>`;
+
+// Q27 soap bubble
+D[27]=`<svg viewBox="0 0 240 160" width="240" height="160" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a27" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#3fb950"/></marker></defs>
+<circle cx="120" cy="82" r="62" fill="none" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+<circle cx="120" cy="82" r="54" fill="none" stroke="#58a6ff" stroke-width="2"/>
+<line x1="120" y1="82" x2="174" y2="82" stroke="#3fb950" stroke-width="1.8" marker-end="url(#a27)"/>
+<text x="130" y="76" fill="#3fb950" font-size="10" font-family="monospace">r = 2 cm</text>
+<text x="8" y="30" fill="#f0a500" font-size="10" font-family="monospace">Two surfaces (soap film)</text>
+<text x="8" y="145" fill="#bc8cff" font-size="10" font-family="monospace">E = 8πr²T = 50.1×10⁻⁴ J</text>
+<text x="8" y="158" fill="#7d8590" font-size="9" font-family="monospace">T = 0.03 N/m</text>
+</svg>`;
+
+// Q28 radioactive decay
+D[28]=`<svg viewBox="0 0 280 180" width="280" height="180" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a28" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#7d8590"/></marker></defs>
+<line x1="40" y1="20" x2="40" y2="155" stroke="#7d8590" stroke-width="2" marker-end="url(#a28)"/>
+<line x1="40" y1="155" x2="265" y2="155" stroke="#7d8590" stroke-width="2" marker-end="url(#a28)"/>
+<text x="14" y="18" fill="#7d8590" font-size="10" font-family="monospace">A/A₀</text>
+<text x="258" y="163" fill="#7d8590" font-size="10" font-family="monospace">t</text>
+<path d="M40,30 C80,34 100,70 130,100 C155,122 175,137 220,147 C240,151 256,153 262,153" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+<line x1="85" y1="92" x2="85" y2="155" stroke="#f0a500" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="40" y1="92" x2="85" y2="92" stroke="#f0a500" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="78" y="168" fill="#f0a500" font-size="9" font-family="monospace">20</text>
+<text x="6" y="95" fill="#f0a500" font-size="9" font-family="monospace">1/2</text>
+<line x1="130" y1="118" x2="130" y2="155" stroke="#3fb950" stroke-width="1" stroke-dasharray="3,2"/>
+<line x1="40" y1="118" x2="130" y2="118" stroke="#3fb950" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="123" y="168" fill="#3fb950" font-size="9" font-family="monospace">40</text>
+<text x="6" y="121" fill="#3fb950" font-size="9" font-family="monospace">1/4</text>
+<line x1="220" y1="147" x2="220" y2="155" stroke="#f85149" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="213" y="168" fill="#f85149" font-size="9" font-family="monospace">80</text>
+<text x="6" y="150" fill="#f85149" font-size="8" font-family="monospace">1/16</text>
+<text x="44" y="34" fill="#e6edf3" font-size="10" font-family="monospace">A₀</text>
+<text x="60" y="148" fill="#7d8590" font-size="9" font-family="monospace">t½=20 min</text>
+</svg>`;
+
+// Q29 spring PE
+D[29]=`<svg viewBox="0 0 260 170" width="260" height="170" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a29" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#7d8590"/></marker></defs>
+<line x1="35" y1="20" x2="35" y2="148" stroke="#7d8590" stroke-width="2" marker-end="url(#a29)"/>
+<line x1="35" y1="148" x2="245" y2="148" stroke="#7d8590" stroke-width="2" marker-end="url(#a29)"/>
+<text x="12" y="18" fill="#7d8590" font-size="10" font-family="monospace">PE</text>
+<text x="238" y="158" fill="#7d8590" font-size="10" font-family="monospace">x</text>
+<path d="M35,148 Q90,148 120,96 Q150,50 180,26 Q200,14 220,10" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+<line x1="90" y1="130" x2="90" y2="148" stroke="#f0a500" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="35" y1="130" x2="90" y2="130" stroke="#f0a500" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="83" y="161" fill="#f0a500" font-size="9" font-family="monospace">2</text>
+<text x="6" y="133" fill="#f0a500" font-size="10" font-family="monospace">U</text>
+<line x1="185" y1="24" x2="185" y2="148" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2"/>
+<line x1="35" y1="24" x2="185" y2="24" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="178" y="161" fill="#3fb950" font-size="9" font-family="monospace">8</text>
+<text x="4" y="28" fill="#3fb950" font-size="10" font-family="monospace">16U</text>
+<text x="40" y="140" fill="#7d8590" font-size="9" font-family="monospace">PE ∝ x²</text>
+<text x="90" y="161" fill="#7d8590" font-size="9" font-family="monospace">x (cm)</text>
+</svg>`;
+
+// Q30 capacitor circuit
+D[30]=`<svg viewBox="0 0 340 180" width="340" height="180" xmlns="http://www.w3.org/2000/svg">
+<text x="8" y="94" fill="#e6edf3" font-size="14" font-family="monospace" font-weight="bold">A</text>
+<text x="318" y="94" fill="#e6edf3" font-size="14" font-family="monospace" font-weight="bold">B</text>
+<line x1="28" y1="90" x2="78" y2="90" stroke="#58a6ff" stroke-width="2"/>
+<line x1="78" y1="72" x2="78" y2="108" stroke="#58a6ff" stroke-width="3"/>
+<line x1="86" y1="72" x2="86" y2="108" stroke="#58a6ff" stroke-width="3"/>
+<text x="68" y="62" fill="#bc8cff" font-size="11" font-family="monospace">3μF</text>
+<line x1="86" y1="90" x2="130" y2="90" stroke="#58a6ff" stroke-width="2"/>
+<circle cx="130" cy="90" r="3.5" fill="#e6edf3"/>
+<line x1="130" y1="90" x2="130" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<line x1="130" y1="90" x2="130" y2="140" stroke="#58a6ff" stroke-width="2"/>
+<line x1="130" y1="40" x2="182" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<line x1="182" y1="24" x2="182" y2="56" stroke="#58a6ff" stroke-width="3"/>
+<line x1="190" y1="24" x2="190" y2="56" stroke="#58a6ff" stroke-width="3"/>
+<text x="176" y="18" fill="#bc8cff" font-size="11" font-family="monospace">3μF</text>
+<line x1="190" y1="40" x2="242" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<line x1="130" y1="140" x2="182" y2="140" stroke="#58a6ff" stroke-width="2"/>
+<line x1="182" y1="124" x2="182" y2="156" stroke="#58a6ff" stroke-width="3"/>
+<line x1="190" y1="124" x2="190" y2="156" stroke="#58a6ff" stroke-width="3"/>
+<text x="176" y="172" fill="#bc8cff" font-size="11" font-family="monospace">3μF</text>
+<line x1="190" y1="140" x2="242" y2="140" stroke="#58a6ff" stroke-width="2"/>
+<circle cx="242" cy="40" r="3.5" fill="#e6edf3"/>
+<circle cx="242" cy="140" r="3.5" fill="#e6edf3"/>
+<line x1="242" y1="40" x2="242" y2="140" stroke="#58a6ff" stroke-width="2"/>
+<circle cx="242" cy="90" r="3.5" fill="#e6edf3"/>
+<line x1="242" y1="90" x2="312" y2="90" stroke="#58a6ff" stroke-width="2"/>
+</svg>`;
+
+// Q38 LCR circuit
+D[38]=`<svg viewBox="0 0 380 160" width="380" height="160" xmlns="http://www.w3.org/2000/svg">
+<line x1="30" y1="40" x2="30" y2="120" stroke="#58a6ff" stroke-width="2"/>
+<line x1="30" y1="120" x2="350" y2="120" stroke="#58a6ff" stroke-width="2"/>
+<line x1="350" y1="120" x2="350" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<line x1="30" y1="40" x2="72" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<path d="M72,40 Q80,28 88,40 Q96,52 104,40 Q112,28 120,40 Q128,52 136,40" fill="none" stroke="#3fb950" stroke-width="2"/>
+<line x1="136" y1="40" x2="182" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<text x="86" y="22" fill="#3fb950" font-size="10" font-family="monospace">L=50/π mH</text>
+<line x1="182" y1="40" x2="208" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<line x1="208" y1="24" x2="208" y2="56" stroke="#58a6ff" stroke-width="3"/>
+<line x1="216" y1="24" x2="216" y2="56" stroke="#58a6ff" stroke-width="3"/>
+<line x1="216" y1="40" x2="262" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<text x="195" y="18" fill="#bc8cff" font-size="10" font-family="monospace">C=10³/π μF</text>
+<rect x="262" y="32" width="50" height="16" rx="3" fill="none" stroke="#f0a500" stroke-width="1.5"/>
+<text x="274" y="44" fill="#f0a500" font-size="10" font-family="monospace">10 Ω</text>
+<line x1="312" y1="40" x2="350" y2="40" stroke="#58a6ff" stroke-width="2"/>
+<circle cx="30" cy="80" r="14" fill="none" stroke="#f85149" stroke-width="1.8"/>
+<path d="M22,80 Q26,72 30,80 Q34,88 38,80" fill="none" stroke="#f85149" stroke-width="1.5"/>
+<text x="2" y="108" fill="#7d8590" font-size="9" font-family="monospace">220V 50Hz</text>
+</svg>`;
+
+// Q39 logic gate
+D[39]=`<svg viewBox="0 0 300 150" width="300" height="150" xmlns="http://www.w3.org/2000/svg">
+<text x="8" y="57" fill="#e6edf3" font-size="13" font-family="monospace">A</text>
+<text x="8" y="97" fill="#e6edf3" font-size="13" font-family="monospace">B</text>
+<line x1="26" y1="53" x2="54" y2="53" stroke="#58a6ff" stroke-width="2"/>
+<polygon points="54,40 54,66 78,53" fill="none" stroke="#3fb950" stroke-width="2"/>
+<circle cx="82" cy="53" r="4" fill="none" stroke="#3fb950" stroke-width="2"/>
+<line x1="86" y1="53" x2="128" y2="53" stroke="#58a6ff" stroke-width="2"/>
+<line x1="26" y1="93" x2="54" y2="93" stroke="#58a6ff" stroke-width="2"/>
+<polygon points="54,80 54,106 78,93" fill="none" stroke="#3fb950" stroke-width="2"/>
+<circle cx="82" cy="93" r="4" fill="none" stroke="#3fb950" stroke-width="2"/>
+<line x1="86" y1="93" x2="128" y2="93" stroke="#58a6ff" stroke-width="2"/>
+<path d="M128,44 L128,102 L158,102 Q185,102 185,73 Q185,44 158,44 Z" fill="none" stroke="#f0a500" stroke-width="2"/>
+<line x1="185" y1="73" x2="240" y2="73" stroke="#58a6ff" stroke-width="2"/>
+<text x="245" y="77" fill="#e6edf3" font-size="13" font-family="monospace">Y</text>
+<text x="56" y="32" fill="#3fb950" font-size="9" font-family="monospace">NOT</text>
+<text x="56" y="118" fill="#3fb950" font-size="9" font-family="monospace">NOT</text>
+<text x="148" y="122" fill="#f0a500" font-size="9" font-family="monospace">AND</text>
+<text x="30" y="138" fill="#7d8590" font-size="9" font-family="monospace">Y = A'·B' → NAND equivalent</text>
+</svg>`;
+
+// Q42 SHM x-t graph
+D[42]=`<svg viewBox="0 0 310 175" width="310" height="175" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a42" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#7d8590"/></marker></defs>
+<line x1="35" y1="88" x2="280" y2="88" stroke="#7d8590" stroke-width="2" marker-end="url(#a42)"/>
+<line x1="35" y1="158" x2="35" y2="22" stroke="#7d8590" stroke-width="2" marker-end="url(#a42)"/>
+<text x="272" y="100" fill="#7d8590" font-size="10" font-family="monospace">t(s)</text>
+<text x="8" y="20" fill="#7d8590" font-size="10" font-family="monospace">x(m)</text>
+<path d="M35,88 C55,88 60,28 80,28 C100,28 105,88 125,88 C145,88 150,148 170,148 C190,148 195,88 215,88 C235,88 240,28 260,28" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+<line x1="75" y1="85" x2="75" y2="91" stroke="#7d8590" stroke-width="1.5"/>
+<text x="70" y="103" fill="#7d8590" font-size="9" font-family="monospace">2</text>
+<line x1="115" y1="85" x2="115" y2="91" stroke="#7d8590" stroke-width="1.5"/>
+<text x="110" y="103" fill="#7d8590" font-size="9" font-family="monospace">4</text>
+<line x1="155" y1="85" x2="155" y2="91" stroke="#7d8590" stroke-width="1.5"/>
+<text x="150" y="103" fill="#7d8590" font-size="9" font-family="monospace">6</text>
+<line x1="195" y1="85" x2="195" y2="91" stroke="#7d8590" stroke-width="1.5"/>
+<text x="190" y="103" fill="#7d8590" font-size="9" font-family="monospace">8</text>
+<line x1="32" y1="28" x2="38" y2="28" stroke="#7d8590" stroke-width="1.5"/>
+<text x="16" y="32" fill="#e6edf3" font-size="10" font-family="monospace">1</text>
+<line x1="32" y1="148" x2="38" y2="148" stroke="#7d8590" stroke-width="1.5"/>
+<text x="10" y="152" fill="#e6edf3" font-size="10" font-family="monospace">-1</text>
+<line x1="75" y1="28" x2="75" y2="88" stroke="#f0a500" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="40" y="18" fill="#f0a500" font-size="9" font-family="monospace">t=2s, x=1m(max)</text>
+<text x="60" y="170" fill="#7d8590" font-size="9" font-family="monospace">T=8s, A=1m → a=-ω²x=-π²/16 m/s²</text>
+</svg>`;
+
+// Q44 semicircular wire
+D[44]=`<svg viewBox="0 0 320 180" width="320" height="180" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="a44a" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#58a6ff"/></marker>
+<marker id="a44b" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#3fb950"/></marker>
+</defs>
+<line x1="20" y1="70" x2="162" y2="70" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#a44a)"/>
+<text x="55" y="60" fill="#58a6ff" font-size="11" font-family="monospace">i →</text>
+<text x="155" y="62" fill="#e6edf3" font-size="12" font-family="monospace">A</text>
+<path d="M160,70 A52,52 0 0,1 160,174" fill="none" stroke="#f0a500" stroke-width="2.5"/>
+<text x="175" y="126" fill="#f0a500" font-size="11" font-family="monospace">R</text>
+<circle cx="108" cy="122" r="5" fill="#bc8cff"/>
+<text x="96" y="114" fill="#bc8cff" font-size="12" font-family="monospace">P</text>
+<line x1="160" y1="174" x2="20" y2="174" stroke="#3fb950" stroke-width="2.5" marker-end="url(#a44b)"/>
+<text x="55" y="168" fill="#3fb950" font-size="11" font-family="monospace">← i</text>
+<text x="155" y="190" fill="#e6edf3" font-size="12" font-family="monospace">B</text>
+<circle cx="108" cy="122" r="11" fill="none" stroke="#f85149" stroke-width="1.5"/>
+<text x="104" y="127" fill="#f85149" font-size="13" font-family="monospace">×</text>
+<text x="44" y="145" fill="#7d8590" font-size="9" font-family="monospace">B into page at P</text>
+</svg>`;
+
+// Q45 lens slab
+D[45]=`<svg viewBox="0 0 320 160" width="320" height="160" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a45" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#f85149"/></marker></defs>
+<line x1="10" y1="80" x2="310" y2="80" stroke="#444c56" stroke-width="1.5" stroke-dasharray="5,3"/>
+<rect x="110" y="25" width="100" height="110" fill="rgba(88,166,255,0.07)" stroke="#444c56" stroke-width="1.5"/>
+<path d="M110,25 Q132,80 110,135" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+<path d="M210,25 Q188,80 210,135" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+<text x="42" y="78" fill="#3fb950" font-size="11" font-family="monospace">n₁=1.5</text>
+<text x="222" y="78" fill="#3fb950" font-size="11" font-family="monospace">n₂=1.6</text>
+<text x="136" y="78" fill="#f0a500" font-size="11" font-family="monospace">glass</text>
+<text x="108" y="20" fill="#bc8cff" font-size="9" font-family="monospace">R₁=20cm</text>
+<text x="186" y="20" fill="#bc8cff" font-size="9" font-family="monospace">R₂=20cm</text>
+<line x1="10" y1="72" x2="108" y2="72" stroke="#f85149" stroke-width="2" marker-end="url(#a45)"/>
+<text x="22" y="148" fill="#7d8590" font-size="9" font-family="monospace">Both surfaces convex, same radii → f = -100cm</text>
+</svg>`;
+
+// Q47 wire in B field
+D[47]=`<svg viewBox="0 0 280 180" width="280" height="180" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="a47x" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#58a6ff"/></marker>
+<marker id="a47y" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#f0a500"/></marker>
+<marker id="a47z" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#3fb950"/></marker>
+</defs>
+<line x1="60" y1="120" x2="180" y2="120" stroke="#58a6ff" stroke-width="2" marker-end="url(#a47x)"/>
+<text x="183" y="124" fill="#58a6ff" font-size="12" font-family="monospace">x</text>
+<line x1="60" y1="120" x2="60" y2="30" stroke="#f0a500" stroke-width="2" marker-end="url(#a47y)"/>
+<text x="52" y="26" fill="#f0a500" font-size="12" font-family="monospace">y</text>
+<line x1="60" y1="120" x2="22" y2="155" stroke="#3fb950" stroke-width="2" marker-end="url(#a47z)"/>
+<text x="10" y="165" fill="#3fb950" font-size="12" font-family="monospace">z</text>
+<line x1="60" y1="120" x2="160" y2="120" stroke="#f85149" stroke-width="5" stroke-linecap="round"/>
+<text x="85" y="140" fill="#f85149" font-size="11" font-family="monospace">L (I→ along +x)</text>
+<text x="185" y="55" fill="#bc8cff" font-size="10" font-family="monospace">B=(2î+3ĵ−4k̂)T</text>
+<text x="14" y="175" fill="#7d8590" font-size="9" font-family="monospace">F=IL×B, |F|=IL√(3²+4²)=5IL</text>
+</svg>`;
+
+// Q49 dipole potential
+D[49]=`<svg viewBox="0 0 310 160" width="310" height="160" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a49" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#f0a500"/></marker></defs>
+<line x1="20" y1="80" x2="290" y2="80" stroke="#444c56" stroke-width="1.5" stroke-dasharray="4,3"/>
+<circle cx="96" cy="80" r="13" fill="#f85149" opacity="0.85"/>
+<text x="88" y="85" fill="#fff" font-size="12" font-family="monospace">−q</text>
+<circle cx="158" cy="80" r="13" fill="#3fb950" opacity="0.85"/>
+<text x="150" y="85" fill="#fff" font-size="12" font-family="monospace">+q</text>
+<circle cx="127" cy="80" r="3.5" fill="#e6edf3"/>
+<text x="122" y="68" fill="#e6edf3" font-size="10" font-family="monospace">O</text>
+<text x="96" y="108" fill="#f0a500" font-size="9" font-family="monospace">|←3cm→|←3cm→|</text>
+<circle cx="258" cy="80" r="5.5" fill="#bc8cff"/>
+<text x="253" y="68" fill="#bc8cff" font-size="12" font-family="monospace">P</text>
+<line x1="127" y1="118" x2="258" y2="118" stroke="#58a6ff" stroke-width="1.5"/>
+<text x="178" y="134" fill="#58a6ff" font-size="9" font-family="monospace">5 cm from O</text>
+<line x1="98" y1="80" x2="154" y2="80" stroke="#f0a500" stroke-width="1.5" marker-end="url(#a49)"/>
+<text x="100" y="57" fill="#7d8590" font-size="9" font-family="monospace">V=Kqd/r²  (on axis)</text>
+</svg>`;
+
+// Q50 bridge height
+D[50]=`<svg viewBox="0 0 280 180" width="280" height="180" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a50" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#3fb950"/></marker></defs>
+<rect x="0" y="152" width="280" height="28" fill="rgba(88,166,255,0.15)" rx="0"/>
+<text x="100" y="168" fill="#58a6ff" font-size="10" font-family="monospace">Water surface</text>
+<rect x="10" y="82" width="260" height="14" fill="#30363d" stroke="#58a6ff" stroke-width="1.5" rx="2"/>
+<circle cx="76" cy="74" r="8" fill="none" stroke="#3fb950" stroke-width="2"/>
+<line x1="76" y1="82" x2="76" y2="96" stroke="#3fb950" stroke-width="2"/>
+<line x1="68" y1="96" x2="84" y2="96" stroke="#3fb950" stroke-width="2"/>
+<line x1="76" y1="78" x2="76" y2="54" stroke="#3fb950" stroke-width="2" marker-end="url(#a50)"/>
+<text x="80" y="64" fill="#3fb950" font-size="9" font-family="monospace">u=4m/s</text>
+<path d="M76,78 Q74,44 78,40 L78,152" fill="none" stroke="#f0a500" stroke-width="1.8" stroke-dasharray="4,2"/>
+<line x1="185" y1="96" x2="185" y2="152" stroke="#f85149" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="188" y="128" fill="#f85149" font-size="10" font-family="monospace">h = ?</text>
+<text x="12" y="148" fill="#7d8590" font-size="8" font-family="monospace">t=4s: h=½gt²-ut=80-16=64m</text>
+</svg>`;
+
+// Q77 Boyle's law
+D[77]=`<svg viewBox="0 0 280 170" width="280" height="170" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a77" markerWidth="7" markerHeight="7" refX="3" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#7d8590"/></marker></defs>
+<line x1="35" y1="20" x2="35" y2="148" stroke="#7d8590" stroke-width="2" marker-end="url(#a77)"/>
+<line x1="35" y1="148" x2="260" y2="148" stroke="#7d8590" stroke-width="2" marker-end="url(#a77)"/>
+<text x="10" y="18" fill="#7d8590" font-size="10" font-family="monospace">P↑</text>
+<text x="252" y="160" fill="#7d8590" font-size="10" font-family="monospace">1/V→</text>
+<line x1="35" y1="148" x2="200" y2="38" stroke="#58a6ff" stroke-width="2"/>
+<text x="202" y="36" fill="#58a6ff" font-size="10" font-family="monospace">T₃</text>
+<line x1="35" y1="148" x2="200" y2="63" stroke="#3fb950" stroke-width="2"/>
+<text x="202" y="61" fill="#3fb950" font-size="10" font-family="monospace">T₂</text>
+<line x1="35" y1="148" x2="200" y2="90" stroke="#f0a500" stroke-width="2"/>
+<text x="202" y="88" fill="#f0a500" font-size="10" font-family="monospace">T₁</text>
+<text x="40" y="168" fill="#7d8590" font-size="9" font-family="monospace">T₃>T₂>T₁  P=nRT·(1/V) ✓ straight lines</text>
+</svg>`;
+
+// Q98 Huckel rule
+D[98]=`<svg viewBox="0 0 370 160" width="370" height="160" xmlns="http://www.w3.org/2000/svg">
+<text x="10" y="18" fill="#f0a500" font-size="11" font-family="monospace" font-weight="bold">Hückel: 4n+2 π electrons</text>
+<text x="10" y="40" fill="#3fb950" font-size="10" font-family="monospace">i.  Naphthalene: 10π ✓ (n=2)</text>
+<text x="10" y="58" fill="#3fb950" font-size="10" font-family="monospace">ii. Cp⁻ anion: 6π ✓ (n=1)</text>
+<text x="10" y="76" fill="#f85149" font-size="10" font-family="monospace">iii.Cyclobutadiene: 4π ✗</text>
+<text x="10" y="94" fill="#f85149" font-size="10" font-family="monospace">iv. Cyclopropenyl anion: 4π ✗</text>
+<text x="190" y="40" fill="#3fb950" font-size="10" font-family="monospace">v.  Cyclopropenyl cation: 2π ✓ (n=0)</text>
+<text x="190" y="58" fill="#f85149" font-size="10" font-family="monospace">vi. Cyclooctatetraene: 8π ✗</text>
+<text x="190" y="76" fill="#3fb950" font-size="10" font-family="monospace">vii.Anthracene: 14π ✓ (n=3)</text>
+<rect x="10" y="108" width="348" height="42" rx="5" fill="rgba(63,185,80,0.1)" stroke="#3fb950" stroke-width="1.5"/>
+<text x="20" y="126" fill="#3fb950" font-size="11" font-family="monospace">✓ Obey Hückel: i, ii, v, vii = 4 species</text>
+<text x="20" y="142" fill="#7d8590" font-size="9" font-family="monospace">Answer: (2) 4</text>
+</svg>`;
+
+const allQuestions=[
+{no:1,subject:"Physics",q:"The work functions of Caesium (Cs), Potassium (K) and Sodium (Na) are 2.14 eV, 2.30 eV and 2.75 eV respectively. If incident electromagnetic radiation has an incident energy of 2.20 eV, which of these photosensitive surfaces may emit photoelectrons?",opts:["Na only","Cs only","Both Na and K","K only"],ans:1},
+{no:2,subject:"Physics",q:"The net magnetic flux through any closed surface is:",opts:["Negative","Zero","Positive","Infinity"],ans:1},
+{no:3,subject:"Physics",diag:3,q:"If the galvanometer G does not show any deflection in the circuit shown, the value of R is given by:",opts:["400 Ω","200 Ω","50 Ω","100 Ω"],ans:3},
+{no:4,subject:"Physics",diag:4,q:"A 12 V, 60 W lamp is connected to the secondary of a step down transformer, whose primary is connected to ac mains of 220 V. Assuming the transformer to be ideal, what is the current in the primary winding?",opts:["0.37 A","0.27 A","2.7 A","3.7 A"],ans:1},
+{no:5,subject:"Physics",q:"A full wave rectifier circuit consists of two p-n junction diodes, a centre-tapped transformer, capacitor and a load resistance. Which of these components remove the ac ripple from the rectified output?",opts:["Load resistance","A centre-tapped transformer","p-n junction diodes","Capacitor"],ans:3},
+{no:6,subject:"Physics",q:"In a plane electromagnetic wave travelling in free space, the electric field component oscillates sinusoidally at a frequency of 2.0×10¹⁰ Hz and amplitude 48 V m⁻¹. The amplitude of oscillating magnetic field is: (c = 3×10⁸ m s⁻¹)",opts:["1.6×10⁻⁶ T","1.6×10⁻⁹ T","1.6×10⁻⁸ T","1.6×10⁻⁷ T"],ans:3},
+{no:7,subject:"Physics",q:"A metal wire has mass (0.4±0.002) g, radius (0.3±0.001) mm and length (5±0.02) cm. The maximum possible percentage error in the measurement of density will nearly be:",opts:["1.4%","1.2%","1.3%","1.6%"],ans:3},
+{no:8,subject:"Physics",q:"Light travels a distance x in time t₁ in air and 10x in time t₂ in another denser medium. What is the critical angle for this medium?",opts:["sin⁻¹(10t₁/t₂)","sin⁻¹(t₂/t₁)","sin⁻¹(10t₂/t₁)","sin⁻¹(t₁/10t₂)"],ans:0},
+{no:9,subject:"Physics",q:"An electric dipole is placed at an angle of 30° with an electric field of intensity 2×10⁵ N C⁻¹. It experiences a torque equal to 4 N m. Calculate the magnitude of charge on the dipole, if the dipole length is 2 cm.",opts:["2 mC","8 mC","6 mC","4 mC"],ans:3},
+{no:10,subject:"Physics",q:"Let a wire be suspended from the ceiling (rigid support) and stretched by a weight W attached at its free end. The longitudinal stress at any point of cross-sectional area A of the wire is:",opts:["Zero","2W/A","W/A","W/2A"],ans:2},
+{no:11,subject:"Physics",q:"In hydrogen spectrum, the shortest wavelength in the Balmer series is λ. The shortest wavelength in the Bracket series is:",opts:["16λ","2λ","4λ","9λ"],ans:0},
+{no:12,subject:"Physics",q:"The temperature of a gas is −50° C. To what temperature the gas should be heated so that the rms speed is increased by 3 times?",opts:["223 K","669° C","3295° C","3097 K"],ans:2},
+{no:13,subject:"Physics",q:"A football player is moving southward and suddenly turns eastward with the same speed to avoid an opponent. The force that acts on the player while turning is:",opts:["along south-west","along eastward","along northward","along north-east"],ans:3},
+{no:14,subject:"Physics",q:"The ratio of frequencies of fundamental harmonic produced by an open pipe to that of closed pipe having the same length is:",opts:["3:1","1:2","2:1","1:3"],ans:2},
+{no:15,subject:"Physics",q:"The angular acceleration of a body, moving along the circumference of a circle, is:",opts:["along the axis of rotation","along the radius, away from centre","along the radius towards the centre","along the tangent to its position"],ans:0},
+{no:16,subject:"Physics",q:"Statement I: Photovoltaic devices can convert optical radiation into electricity.\nStatement II: Zener diode is designed to operate under reverse bias in breakdown region.\nChoose the most appropriate answer:",opts:["Statement I is incorrect but Statement II is correct","Both Statement I and Statement II are correct","Both Statement I and Statement II are incorrect","Statement I is correct but Statement II is incorrect"],ans:1},
+{no:17,subject:"Physics",q:"If ∮E⃗·dS⃗ = 0 over a closed surface, then:",opts:["the electric field inside the surface is necessarily uniform","the number of flux lines entering the surface must be equal to the number of flux lines leaving it","the magnitude of electric field on the surface is constant","all the charges must necessarily be inside the surface"],ans:1},
+{no:18,subject:"Physics",q:"Resistance of a carbon resistor determined from colour codes is (22000±5%) Ω. The colour of third band must be:",opts:["Yellow","Red","Green","Orange"],ans:2},
+{no:19,subject:"Physics",q:"The magnetic energy stored in an inductor of inductance 4 μH carrying a current of 2 A is:",opts:["8 μJ","4 μJ","4 mJ","8 mJ"],ans:0},
+{no:20,subject:"Physics",q:"In a series LCR circuit, the inductance L is 10 mH, capacitance C is 1 μF and resistance R is 100 Ω. The frequency at which resonance occurs is:",opts:["1.59 kHz","15.9 rad/s","15.9 kHz","1.59 rad/s"],ans:0},
+{no:21,subject:"Physics",diag:21,q:"The magnitude and direction of the current in the following circuit is:",opts:["1.5 A from B to A through E","0.2 A from B to A through E","0.5 A from A to B through E","5/9 A from A to B through E"],ans:3},
+{no:22,subject:"Physics",q:"The minimum wavelength of X-rays produced by an electron accelerated through a potential difference of V volts is proportional to:",opts:["V²","√V","1/V","1/√V"],ans:2},
+{no:23,subject:"Physics",q:"The errors in the measurement which arise due to unpredictable fluctuations in temperature and voltage supply are:",opts:["Random errors","Instrumental errors","Personal errors","Least count errors"],ans:0},
+{no:24,subject:"Physics",q:"For Young's double slit experiment:\nStatement I: If screen is moved away from slits, angular separation of fringes remains constant.\nStatement II: If monochromatic source is replaced by another of larger wavelength, angular separation of fringes decreases.\nChoose the correct answer:",opts:["Statement I false but Statement II true","Both Statement I and II are true","Both Statement I and II are false","Statement I is true but Statement II is false"],ans:3},
+{no:25,subject:"Physics",diag:25,q:"A bullet is fired from a gun at 280 m s⁻¹ in the direction 30° above the horizontal. The maximum height attained by the bullet is (g = 9.8 m s⁻², sin 30° = 0.5):",opts:["3000 m","2800 m","2000 m","1000 m"],ans:3},
+{no:26,subject:"Physics",q:"A Carnot engine has an efficiency of 50% when its source is at a temperature 327° C. The temperature of the sink is:",opts:["200° C","27° C","15° C","100° C"],ans:1},
+{no:27,subject:"Physics",diag:27,q:"The amount of energy required to form a soap bubble of radius 2 cm from a soap solution is nearly (surface tension = 0.03 N m⁻¹):",opts:["50.1×10⁻⁴ J","30.16×10⁻⁴ J","5.06×10⁻⁴ J","3.01×10⁻⁴ J"],ans:0},
+{no:28,subject:"Physics",diag:28,q:"The half life of a radioactive substance is 20 minutes. In how much time does the activity drop to (1/16)th of its initial value?",opts:["80 minutes","20 minutes","40 minutes","60 minutes"],ans:0},
+{no:29,subject:"Physics",diag:29,q:"The potential energy of a long spring when stretched by 2 cm is U. If the spring is stretched by 8 cm, potential energy stored in it will be:",opts:["16U","2U","4U","8U"],ans:0},
+{no:30,subject:"Physics",diag:30,q:"The equivalent capacitance of the system shown in the following circuit is:",opts:["9 μF","2 μF","3 μF","6 μF"],ans:0},
+{no:31,subject:"Physics",q:"A vehicle travels half the distance with speed ϑ and the remaining distance with speed 2ϑ. Its average speed is:",opts:["3ϑ/4","ϑ/3","2ϑ/3","4ϑ/3"],ans:3},
+{no:32,subject:"Physics",q:"The ratio of radius of gyration of a solid sphere (mass M, radius R) about its own axis to the radius of gyration of the thin hollow sphere of same mass and radius about its axis is:",opts:["5:2","3:5","5:3","2:5"],ans:1},
+{no:33,subject:"Physics",q:"Two bodies of mass m and 9m are placed at a distance R. The gravitational potential on the line joining the bodies where the gravitational field is zero, will be (G = gravitational constant):",opts:["−20Gm/R","−8Gm/R","−12Gm/R","−16Gm/R"],ans:2},
+{no:34,subject:"Physics",q:"The venturi-meter works on:",opts:["The principle of perpendicular axes","Huygen's principle","Bernoulli's principle","The principle of parallel axes"],ans:2},
+{no:35,subject:"Physics",q:"An ac source is connected to a capacitor C. Due to decrease in its operating frequency:",opts:["capacitive reactance remains constant","capacitive reactance decreases","displacement current increases","displacement current decreases"],ans:1},
+{no:36,subject:"Physics",q:"The radius of innermost orbit of hydrogen atom is 5.3×10⁻¹¹ m. What is the radius of third allowed orbit of hydrogen atom?",opts:["4.77 Å","0.53 Å","1.06 Å","1.59 Å"],ans:0},
+{no:37,subject:"Physics",q:"The resistance of platinum wire at 0°C is 2Ω and 6.8Ω at 80°C. The temperature coefficient of resistance of the wire is:",opts:["3×10⁻¹ °C⁻¹","3×10⁻⁴ °C⁻¹","3×10⁻³ °C⁻¹","3×10⁻² °C⁻¹"],ans:2},
+{no:38,subject:"Physics",diag:38,q:"The net impedance of circuit (L = 50/π mH, C = 10³/π μF, R = 10Ω, 220V 50Hz) will be:",opts:["25 Ω","10√2 Ω","15 Ω","5√5 Ω"],ans:0},
+{no:39,subject:"Physics",diag:39,q:"For the logic circuit shown (Input A through NOT gate, Input B through NOT gate, both outputs fed into AND gate → Y), the truth table is:",opts:["A=0,B=0→Y=0; A=0,B=1→Y=0; A=1,B=0→Y=0; A=1,B=1→Y=1","A=0,B=0→Y=1; A=0,B=1→Y=1; A=1,B=0→Y=1; A=1,B=1→Y=0","A=0,B=0→Y=0; A=0,B=1→Y=1; A=1,B=0→Y=1; A=1,B=1→Y=1","A=0,B=0→Y=1; A=0,B=1→Y=0; A=1,B=0→Y=0; A=1,B=1→Y=0"],ans:3},
+{no:40,subject:"Physics",q:"10 resistors, each of resistance R are connected in series to a battery of emf E. Then those are connected in parallel to the same battery, the current is increased n times. The value of n is:",opts:["1000","10","100","1"],ans:2},
+{no:41,subject:"Physics",q:"Calculate the maximum acceleration of a moving car so that a body lying on the floor remains stationary. Coefficient of static friction = 0.15 (g = 10 m s⁻²).",opts:["50 m s⁻²","1.2 m s⁻²","150 m s⁻²","1.5 m s⁻²"],ans:3},
+{no:42,subject:"Physics",diag:42,q:"The x-t graph of a particle performing SHM is shown in the figure (T = 8s, A = 1m). The acceleration of the particle at t = 2 s is:",opts:["−π²/16 m s⁻²","π²/8 m s⁻²","−π²/8 m s⁻²","π²/16 m s⁻²"],ans:0},
+{no:43,subject:"Physics",q:"A satellite is orbiting just above the surface of the earth with period T. If d is the density of the earth and G is the universal constant of gravitation, the quantity 3π/Gd represents:",opts:["√T","T","T²","T³"],ans:1},
+{no:44,subject:"Physics",diag:44,q:"A very long conducting wire is bent in a semi-circular shape from A to B as shown in figure. The magnetic field at point P for steady current configuration is given by:",opts:["μ₀i/4R [1 − 2/π] pointed into the page","μ₀i/4R pointed into the page","μ₀i/4R pointed away from the page","μ₀i/4R [1 − 2/π] pointed away from page"],ans:0},
+{no:45,subject:"Physics",diag:45,q:"What is the equivalent focal length of the combination of lenses? (n₁=1.5, R₁=R₂=20 cm, n₂=1.6, all layers thin)",opts:["−50 cm","40 cm","−40 cm","−100 cm"],ans:3},
+{no:46,subject:"Physics",q:"Two thin lenses of same focal length f, one convex and one concave, are placed in contact. The equivalent focal length of the combination will be:",opts:["Infinite","Zero","f/4","f/2"],ans:0},
+{no:47,subject:"Physics",diag:47,q:"A wire carrying current I along the positive x-axis has length L. It is kept in a magnetic field B⃗ = (2î + 3ĵ − 4k̂) T. The magnitude of the magnetic force acting on the wire is:",opts:["√3 IL","3 IL","√5 IL","5 IL"],ans:3},
+{no:48,subject:"Physics",q:"A bullet is fired into a wooden block with velocity u. After 24 cm, velocity becomes u/3. The bullet then penetrates further and stops at the other end. Total length of the block is:",opts:["30 cm","27 cm","24 cm","28 cm"],ans:1},
+{no:49,subject:"Physics",diag:49,q:"An electric dipole is placed as shown (−q and +q each 3 cm from centre O, P is 5 cm from O along axis). The electric potential (in 10² V) at point P due to the dipole is (1/(4πε₀) = K):",opts:["(8/3)qK","(3/8)qK","(5/8)qK","(8/5)qK"],ans:0},
+{no:50,subject:"Physics",diag:50,q:"A student on a bridge throws a ball vertically upwards at 4 m s⁻¹. The ball strikes the water surface after 4 s. The height of bridge above water surface is (g = 10 m s⁻²):",opts:["68 m","56 m","60 m","64 m"],ans:3},
+{no:51,subject:"Chemistry",q:"Taking stability as the factor, which one of the following represents correct relationship?",opts:["TlI > TlI₃","TlCl₃ > TlCl","InI₃ > InI","AlCl > AlCl₃"],ans:0},
+{no:52,subject:"Chemistry",q:"Identify the product in the following reaction:\nBenzenediazonium chloride → (i) Cu₂Br₂/HBr (ii) Mg/dry ether (iii) H₂O → Product",opts:["4-bromophenol","Phenol","Benzene","Phenylmagnesium bromide"],ans:1},
+{no:53,subject:"Chemistry",q:"The given compound CH₂=CH−CH(epoxide ring)−CH₂CH₃ is an example of:",opts:["vinylic halide","benzylic halide","aryl halide","allylic halide"],ans:3},
+{no:54,subject:"Chemistry",q:"In Lassaigne's extract of an organic compound, both nitrogen and sulphur are present, which gives blood red colour with Fe³⁺ due to the formation of:",opts:["[Fe(SCN)]²⁺","Fe₄[Fe(CN)₆]₃·xH₂O","NaSCN","[Fe(CN)₅NOS]⁴⁻"],ans:3},
+{no:55,subject:"Chemistry",q:"Assertion A: A reaction can have zero activation energy.\nReason R: The minimum extra amount of energy absorbed by reactant molecules so that their energy equals the threshold value, is called activation energy.\nChoose the correct answer:",opts:["A is false but R is true","Both A and R are true and R is the correct explanation of A","Both A and R are true and R is NOT the correct explanation of A","A is true but R is false"],ans:2},
+{no:56,subject:"Chemistry",q:"The right option for the mass of CO₂ produced by heating 20 g of 20% pure limestone is (Atomic mass of Ca = 40):\nCaCO₃ → CaO + CO₂",opts:["1.32 g","1.12 g","1.76 g","2.64 g"],ans:2},
+{no:57,subject:"Chemistry",q:"Complete the following reaction:\nCyclohexanone + HCN → [B] (cyanohydrin) → conc. H₂SO₄/Δ → [C]\n[C] is:",opts:["Cyclohexane-1-carboxylic acid","Cyclohexanol","Cyclohex-1-ene-1-carboxylic acid","Cyclohexanecarbaldehyde"],ans:0},
+{no:58,subject:"Chemistry",q:"Statement I: A unit formed by the attachment of a base to 1' position of sugar is known as nucleoside.\nStatement II: When nucleoside is linked to phosphorous acid at 5'-position of sugar moiety, we get nucleotide.\nChoose the correct answer:",opts:["Statement I is false but Statement II is true","Both Statement I and Statement II are true","Both Statement I and Statement II are false","Statement I is true but Statement II is false"],ans:1},
+{no:59,subject:"Chemistry",q:"A compound is formed by two elements A and B. Element B forms cubic close packed structure and atoms of A occupy 1/3 of tetrahedral voids. If the formula is AₓBᵧ, then x + y is in option:",opts:["2","5","4","3"],ans:1},
+{no:60,subject:"Chemistry",q:"The stability of Cu²⁺ is more than Cu⁺ salts in aqueous solution due to:",opts:["second ionisation enthalpy","first ionisation enthalpy","enthalpy of atomization","hydration energy"],ans:3},
+{no:61,subject:"Chemistry",q:"Match List I with List II:\nA. Coke — I. Carbon atoms are sp³ hybridised\nB. Diamond — II. Used as a dry lubricant\nC. Fullerene — III. Used as a reducing agent\nD. Graphite — IV. Cage like molecules\nChoose the correct answer:",opts:["A-III, B-IV, C-I, D-II","A-II, B-IV, C-I, D-III","A-IV, B-I, C-II, D-III","A-III, B-I, C-IV, D-II"],ans:3},
+{no:62,subject:"Chemistry",q:"Assertion A: Helium is used to dilute oxygen in diving apparatus.\nReason R: Helium has high solubility in O₂.\nChoose the correct answer:",opts:["A is false but R is true","Both A and R true, R is correct explanation","Both A and R true, R is NOT correct explanation","A is true but R is false"],ans:3},
+{no:63,subject:"Chemistry",q:"Some tranquilizers are listed below. Which one belongs to barbiturates?",opts:["Veronal","Chlordiazepoxide","Meprobamate","Valium"],ans:0},
+{no:64,subject:"Chemistry",q:"Which of the following statements are NOT correct?\nA. H₂ reduces heavy metal oxides to metals.\nB. Heavy water used to study reaction mechanism.\nC. H₂ used to make saturated fats from oils.\nD. H−H bond dissociation enthalpy is lowest compared to any single bond between two atoms of any element.\nE. H₂ reduces oxides of metals more active than iron.",opts:["A, B, C only","B, C, D, E only","B, D only","D, E only"],ans:3},
+{no:65,subject:"Chemistry",q:"For a certain reaction, rate = k[A]²[B]. When initial concentration of A is tripled keeping B constant, the initial rate would:",opts:["increase by a factor of three","decrease by a factor of nine","increase by a factor of six","increase by a factor of nine"],ans:3},
+{no:66,subject:"Chemistry",q:"Which one is an example of heterogeneous catalysis?",opts:["N₂ + H₂ → NH₃ in presence of finely divided iron","SO₂ → SO₃ in presence of oxides of nitrogen","Hydrolysis of sugar catalysed by H⁺ ions","Decomposition of ozone in presence of NO"],ans:0},
+{no:67,subject:"Chemistry",q:"Which one of the following statements is correct?",opts:["Mg plays roles in neuromuscular function and interneuronal transmission","The daily requirement of Mg and Ca in human body is estimated to be 0.2−0.3 g","All enzymes that utilise ATP in phosphate transfer require Ca as the cofactor","The bone in human body is an inert and unchanging substance"],ans:0},
+{no:68,subject:"Chemistry",q:"Weight (g) of two moles of the organic compound obtained by heating sodium ethanoate with NaOH in presence of CaO is:",opts:["18","16","32","30"],ans:1},
+{no:69,subject:"Chemistry",q:"The element expected to form the largest ion to achieve the nearest noble gas configuration is:",opts:["Na","O","F","N"],ans:0},
+{no:70,subject:"Chemistry",q:"The correct order of energies of molecular orbitals of N₂ molecule is:",opts:["σ1s<σ*1s<σ2s<σ*2s<(π2pₓ=π2pᵧ)<(π*2pₓ=π*2pᵧ)<σ2pz<σ*2pz","σ1s<σ*1s<σ2s<σ*2s<(π2pₓ=π2pᵧ)<σ2pz<(π*2pₓ=π*2pᵧ)<σ*2pz","σ1s<σ*1s<σ2s<σ*2s<σ2pz<(π2pₓ=π2pᵧ)<(π*2pₓ=π*2pᵧ)<σ*2pz","σ1s<σ*1s<σ2s<σ*2s<σ2pz<(π*2pₓ=π*2pᵧ)<(π2pₓ=π2pᵧ)"],ans:0},
+{no:71,subject:"Chemistry",q:"Homoleptic complex from the following complexes is:",opts:["Triamminetriaquachromium(III) chloride","Potassium trioxalatoaluminate(III)","Diamminechloridonitrito-N-platinum(II)","Pentaamminecarbonatocobalt(III) chloride"],ans:1},
+{no:72,subject:"Chemistry",q:"Intermolecular forces include:\nA. dipole-dipole forces\nB. dipole-induced dipole forces\nC. hydrogen bonding\nD. covalent bonding\nE. dispersion forces\nChoose the most appropriate answer:",opts:["A, C, D, E are correct","B, C, D, E are correct","A, B, C, D are correct","A, B, C, E are correct"],ans:3},
+{no:73,subject:"Chemistry",q:"The number of σ bonds, π bonds and lone pairs of electrons in pyridine, respectively are:",opts:["12, 2, 1","11, 2, 0","12, 3, 0","11, 3, 1"],ans:0},
+{no:74,subject:"Chemistry",q:"Select the correct statements:\nA. Atoms of all elements are composed of two fundamental particles.\nB. Mass of electron is 9.10939×10⁻³¹ kg.\nC. All isotopes of a given element show same chemical properties.\nD. Protons and electrons are collectively known as nucleons.\nE. Dalton's atomic theory regarded the atom as an ultimate particle of matter.",opts:["B, C and E only","A, B and C only","C, D and E only","A and E only"],ans:0},
+{no:75,subject:"Chemistry",q:"Identify product (A) in the following reaction:\n[Diketone: 1-(3-acetylcyclohexyl)ethan-1-one] + Zn-Hg/conc. HCl → (A) + 2H₂O",opts:["Both carbonyls reduced: dimethyl-substituted cyclohexylbenzene product","Only one carbonyl reduced: alkene product","Diol product","Diol with CH₂OH groups"],ans:0},
+{no:76,subject:"Chemistry",q:"Assertion A: In equation ΔᵣG = −nFE_cell, value of ΔᵣG depends on n.\nReason R: E_cell is an intensive property and ΔᵣG is an extensive property.\nChoose the correct answer:",opts:["A is false but R is true","Both A and R true, R is correct explanation of A","Both A and R true, R is NOT correct explanation of A","A is true but R is false"],ans:1},
+{no:77,subject:"Chemistry",diag:77,q:"Which amongst the following options is the correct graphical representation of Boyle's Law?",opts:["P vs T lines through origin for different V","P vs V hyperbolic isotherms (higher T → higher curve)","P vs 1/V straight lines through origin (higher T → steeper slope) ✓","P vs 1/V hyperbolic curves"],ans:2},
+{no:78,subject:"Chemistry",q:"The relation between nₘ (number of permissible values of magnetic quantum number m) for a given value of azimuthal quantum number l, is:",opts:["nₘ = l + 2","l = (nₘ − 1)/2","l = 2nₘ + 1","nₘ = 2l² + 1"],ans:1},
+{no:79,subject:"Chemistry",q:"Conductivity of centimolar KCl solution at 25°C is 0.0210 ohm⁻¹ cm⁻¹ and resistance of the cell is 60 ohm. The value of cell constant is:",opts:["3.34 cm⁻¹","1.34 cm⁻¹","3.28 cm⁻¹","1.26 cm⁻¹"],ans:3},
+{no:80,subject:"Chemistry",q:"3-Methylbutan-2-ol + HBr → Product (P)\n(Consider carbocation rearrangement)",opts:["CH₃C(CH₃)₂CH₂Br (neopentyl bromide)","CH₃CBr(CH₃)CH₂CH₃ (2-bromo-2-methylbutane via rearrangement)","CH₃CH=CHCH₃","CH₃CH(CH₃)CHBrCH₃"],ans:1},
+{no:81,subject:"Chemistry",q:"Which amongst the following molecules on polymerization produces neoprene?",opts:["2-methylbuta-1,3-diene (isoprene)","buta-1,3-diene","2-chlorobuta-1,3-diene (chloroprene)","but-1-en-3-yne"],ans:2},
+{no:82,subject:"Chemistry",q:"Total number of species NOT having eight electrons around central atom in its outermost shell:\nNH₃, AlCl₃, BeCl₂, CCl₄, PCl₅",opts:["1","3","2","4"],ans:1},
+{no:83,subject:"Chemistry",q:"Which of the following molecules/ion acts as a Lewis acid?",opts:["OH⁻","NH₃","H₂O","BF₃"],ans:3},
+{no:84,subject:"Chemistry",q:"Assertion A: Metallic sodium dissolves in liquid ammonia giving a deep blue solution, which is paramagnetic.\nReason R: The deep blue solution is due to the formation of amide.\nChoose the correct answer:",opts:["A is false but R is true","Both A and R true, R is correct explanation","Both A and R true, R is NOT correct explanation","A is true but R is false"],ans:3},
+{no:85,subject:"Chemistry",q:"Which of the following reactions will NOT give primary amine as the product?",opts:["CH₃CONH₂ + LiAlH₄/H₃O⁺ → Product","CH₃CONH₂ + Br₂/KOH → Product","CH₃CN + LiAlH₄/H₃O⁺ → Product","CH₃NC + LiAlH₄/H₃O⁺ → Product"],ans:3},
+{no:86,subject:"Chemistry",q:"Which of the following statements are INCORRECT?\nA. All transition metals except Sc form ionic MO oxides.\nB. Highest oxidation number corresponding to group number attained from Sc₂O₃ to Mn₂O₇.\nC. Basic character increases from V₂O₃ to V₂O₄ to V₂O₅.\nD. V₂O₄ dissolves in acids to give VO₄³⁻ salts.\nE. CrO is basic but Cr₂O₃ is amphoteric.",opts:["B and C only","A and E only","B and D only","C and D only"],ans:2},
+{no:87,subject:"Chemistry",q:"Consider the following reaction:\nNaphthalen-2-yl methyl ether + HI → Δ → A + B\nIdentify products A and B.",opts:["A = 2-methylnaphthalene, B = iodonaphthalene","A = 2-methylnaphthalene, B = 2-naphthol","A = 2-(hydroxymethyl)naphthalene, B = iodonaphthalene","A = 2-(iodomethyl)naphthalene, B = 2-naphthol"],ans:0},
+{no:88,subject:"Chemistry",q:"Which amongst the following options is the correct relation between change in enthalpy and change in internal energy?",opts:["ΔH + ΔU = ΔnR","ΔH = ΔU − ΔnᵍRT","ΔH = ΔU + ΔnᵍRT","ΔH − ΔU = −ΔnRT"],ans:2},
+{no:89,subject:"Chemistry",q:"What fraction of one edge centred octahedral void lies in one unit cell of fcc?",opts:["1/12","1/2","1/3","1/4"],ans:3},
+{no:90,subject:"Chemistry",q:"Statement I: The nutrient deficient water bodies lead to eutrophication.\nStatement II: Eutrophication leads to decrease in the level of oxygen in the water bodies.\nChoose the correct answer:",opts:["Statement I incorrect but Statement II true","Both Statement I and Statement II are true","Both Statement I and Statement II are false","Statement I correct but Statement II false"],ans:1},
+{no:91,subject:"Chemistry",diag:91,q:"Which amongst the following will be most readily dehydrated under acidic conditions?",opts:["4-nitro-4-methylpentan-2-ol (primary C near NO₂)","3-nitro-2-methylpentan-2-ol (tertiary OH, NO₂ at β-carbon)","2,4-dimethylpentan-3-ol (secondary OH, gem-dimethyl)","4-nitropentan-2-ol (secondary OH)"],ans:1},
+{no:92,subject:"Chemistry",q:"Match List I (Oxoacids of Sulphur) with List II (Bonds):\nA. Peroxodisulphuric acid — I. Two S-OH, Four S=O, One S-O-S\nB. Sulphuric acid — II. Two S-OH, One S=O\nC. Pyrosulphuric acid — III. Two S-OH, Four S=O, One S-O-O-S\nD. Sulphurous acid — IV. Two S-OH, Two S=O",opts:["A-III, B-IV, C-II, D-I","A-I, B-III, C-II, D-IV","A-III, B-IV, C-I, D-II","A-I, B-III, C-IV, D-II"],ans:2},
+{no:93,subject:"Chemistry",q:"Identify the major product:\n2-formylbenzoate + 2[Ag(NH₃)₂]⁺ + 3OH⁻ → Δ → major product\n(Tollens' reagent oxidises aldehyde, not ketone)",opts:["2-(1-hydroxyethyl)benzoate with COO⁻","2-(1-hydroxyethyl)benzoic acid with OH","2-acetylbenzoate with OH","2-acetylbenzoate with COO⁻"],ans:3},
+{no:94,subject:"Chemistry",q:"Identify final product [D]:\nCH₃CHO → LiAlH₄/H₃O⁺ → [A=CH₃CH₂OH] → H₂SO₄/Δ → [B=CH₂=CH₂] → HBr → [C=PhCH₂Br] → Na/dry ether → [D]",opts:["HC≡C⁻Na⁺","Ethylbenzene","1,2-diphenylethane (bibenzyl) via Wurtz","C₄H₁₀"],ans:2},
+{no:95,subject:"Chemistry",q:"The reaction that does NOT take place in a blast furnace between 900 K to 1500 K temperature range during extraction of iron is:",opts:["CaO + SiO₂ → CaSiO₃","Fe₂O₃ + CO → 2FeO + CO₂","FeO + CO → Fe + CO₂","C + CO₂ → 2CO"],ans:2},
+{no:96,subject:"Chemistry",q:"Pumice stone is an example of:",opts:["foam","sol","gel","solid sol"],ans:0},
+{no:97,subject:"Chemistry",q:"Which complex compound is most stable?",opts:["[Co(NH₃)₆]₂(SO₄)₃","[Co(NH₃)₄(H₂O)Br](NO₃)₂","[Co(NH₃)₃(NO₃)₃]","[CoCl₂(en)₂]NO₃"],ans:0},
+{no:98,subject:"Chemistry",diag:98,q:"Consider the following: (i) naphthalene (ii) cyclopentadienyl anion (iii) cyclobutadiene (iv) cyclopropenyl anion (v) cyclopropenyl cation (vi) cyclooctatetraene (vii) anthracene.\nThe number of compounds/species which obey Hückel's rule is:",opts:["5","4","6","2"],ans:0},
+{no:99,subject:"Chemistry",q:"The equilibrium concentrations of A, B, C, D in A + B ⇌ C + D are 2, 3, 10 and 6 mol L⁻¹ at 300 K. ΔG° for the reaction is (R = 2 cal/mol K):",opts:["−13.73 cal","1372.60 cal","−137.26 cal","−1381.80 cal"],ans:0},
+{no:100,subject:"Chemistry",q:"On balancing the given redox reaction:\na Cr₂O₇²⁻ + b SO₃²⁻(aq) + c H⁺(aq) → 2a Cr³⁺(aq) + b SO₄²⁻(aq) + (c/2)H₂O(l)\nthe coefficients a, b and c are found to be, respectively:",opts:["8, 1, 3","1, 3, 8","3, 8, 1","1, 8, 3"],ans:1},
+{no:101,subject:"Botany",q:"Assertion A: The first stage of gametophyte in the life cycle of moss is protonema stage.\nReason R: Protonema develops directly from spores produced in capsule.\nChoose the most appropriate answer:",opts:["A is not correct but R is correct","Both A and R correct and R is the correct explanation of A","Both A and R correct but R is NOT the correct explanation of A","A is correct but R is not correct"],ans:1},
+{no:102,subject:"Botany",q:"Cellulose does not form blue colour with Iodine because:",opts:["It breaks down when iodine reacts with it","It is a disaccharide","It is a helical molecule","It does not contain complex helices and hence cannot hold iodine molecules"],ans:3},
+{no:103,subject:"Botany",q:"Which micronutrient is required for splitting of water molecule during photosynthesis?",opts:["copper","manganese","molybdenum","magnesium"],ans:1},
+{no:104,subject:"Botany",q:"Expressed Sequence Tags (ESTs) refers to:",opts:["Certain important expressed genes","All genes that are expressed as RNA","All genes that are expressed as proteins","All genes whether expressed or unexpressed"],ans:0},
+{no:105,subject:"Botany",q:"The thickness of ozone in a column of air in the atmosphere is measured in terms of:",opts:["Kilobase","Dobson units","Decibels","Decameter"],ans:1},
+{no:106,subject:"Botany",q:"Assertion A: ATP is used at two steps in glycolysis.\nReason R: First ATP is used in converting glucose into glucose-6-phosphate and second ATP is used in conversion of fructose-6-phosphate into fructose-1,6-diphosphate.\nChoose the correct answer:",opts:["A is false but R is true","Both A and R true and R is correct explanation of A","Both A and R true but R is NOT correct explanation of A","A is true but R is false"],ans:1},
+{no:107,subject:"Botany",q:"Upon exposure to UV radiation, DNA stained with ethidium bromide will show:",opts:["Bright orange colour","Bright red colour","Bright blue colour","Bright yellow colour"],ans:0},
+{no:108,subject:"Botany",q:"Among 'The Evil Quartet', which one is considered the most important cause driving extinction of species?",opts:["Co-extinctions","Habitat loss and fragmentation","Over exploitation for economic gain","Alien species invasions"],ans:1},
+{no:109,subject:"Botany",q:"Which of the following stages of meiosis involves division of centromere?",opts:["Telophase","Metaphase I","Metaphase II","Anaphase II"],ans:3},
+{no:110,subject:"Botany",q:"Which hormone promotes internode/petiole elongation in deep water rice?",opts:["2, 4-D","GA₃","Kinetin","Ethylene"],ans:3},
+{no:111,subject:"Botany",q:"Frequency of recombination between gene pairs on same chromosome as a measure of the distance between genes to map their position on chromosome, was used for the first time by:",opts:["Henking","Thomas Hunt Morgan","Sutton and Boveri","Alfred Sturtevant"],ans:3},
+{no:112,subject:"Botany",q:"How many ATP and NADPH₂ are required for the synthesis of one molecule of Glucose during Calvin cycle?",opts:["18 ATP and 16 NADPH₂","12 ATP and 12 NADPH₂","18 ATP and 12 NADPH₂","12 ATP and 16 NADPH₂"],ans:0},
+{no:113,subject:"Botany",q:"What is the role of RNA polymerase III in the process of transcription in Eukaryotes?",opts:["Transcription of only snRNAs","Transcription of rRNAs (28S, 18S and 5.8S)","Transcription of tRNA, 5 srRNA and snRNA","Transcription of precursor of mRNA"],ans:2},
+{no:114,subject:"Botany",q:"Family Fabaceae differs from Solanaceae and Liliaceae. With respect to the stamens, pick out the characteristics specific to family Fabaceae but not found in Solanaceae or Liliaceae.",opts:["Epiphyllous and Dithecous anthers","Diadelphous and Dithecous anthers","Polyadelphous and epipetalous stamens","Monoadelphous and Monothecous anthers"],ans:1},
+{no:115,subject:"Botany",q:"The process of appearance of recombination nodules occurs at which sub stage of prophase I in meiosis?",opts:["Diakinesis","Zygotene","Pachytene","Diplotene"],ans:2},
+{no:116,subject:"Botany",q:"In the equation GPP − R = NPP (GPP = Gross Primary Productivity, NPP = Net Primary Productivity), R here is:",opts:["Reproductive allocation","Photosynthetically active radiation","Respiratory quotient","Respiratory loss"],ans:3},
+{no:117,subject:"Botany",q:"The reaction centre in PS II has an absorption maxima at:",opts:["780 nm","680 nm","700 nm","660 nm"],ans:1},
+{no:118,subject:"Botany",q:"Unequivocal proof that DNA is the genetic material was first proposed by:",opts:["Wilkins and Franklin","Frederick Griffith","Alfred Hershey and Martha Chase","Avery, Macleoid and McCarthy"],ans:2},
+{no:119,subject:"Botany",q:"Spraying of which of the following phytohormone on juvenile conifers helps in hastening the maturity period, that leads to early seed production?",opts:["Abscisic Acid","Indole-3-butyric Acid","Gibberellic Acid","Zeatin"],ans:2},
+{no:120,subject:"Botany",q:"What is the function of tassels in the corn cob?",opts:["To protect seeds","To attract insects","To trap pollen grains","To disperse pollen grains"],ans:3},
+{no:121,subject:"Botany",q:"During the purification process for recombinant DNA technology, addition of chilled ethanol precipitates out:",opts:["Polysaccharides","RNA","DNA","Histones"],ans:2},
+{no:122,subject:"Botany",q:"In angiosperm, the haploid, diploid and triploid structures of a fertilized embryo sac sequentially are:",opts:["Synergids, antipodals and Polar nuclei","Synergids, Primary endosperm nucleus and zygote","Antipodals, synergids, and primary endosperm nucleus","Synergids, Zygote and Primary endosperm nucleus"],ans:3},
+{no:123,subject:"Botany",q:"Large, colourful, fragrant flowers with nectar are seen in:",opts:["wind pollinated plants","insect pollinated plants","bird pollinated plants","bat pollinated plants"],ans:1},
+{no:124,subject:"Botany",q:"In tissue culture experiments, leaf mesophyll cells are put in a culture medium to form callus. This phenomenon may be called as:",opts:["Senescence","Differentiation","Dedifferentiation","Development"],ans:2},
+{no:125,subject:"Botany",q:"Statement I: The forces generated by transpiration can lift a xylem-sized column of water over 130 meters height.\nStatement II: Transpiration cools leaf surfaces sometimes 10 to 15 degrees, by evaporative cooling.\nChoose the most appropriate answer:",opts:["Statement I incorrect but Statement II correct","Both Statement I and Statement II are correct","Both Statement I and Statement II are incorrect","Statement I correct but Statement II incorrect"],ans:1},
+{no:126,subject:"Botany",q:"The historic Convention on Biological Diversity, 'The Earth Summit' was held in Rio de Janeiro in the year:",opts:["2002","1985","1992","1986"],ans:2},
+{no:127,subject:"Botany",q:"In gene gun method used to introduce alien DNA into host cells, microparticles of _______ metal are used.",opts:["Silver","Copper","Zinc","Tungsten or gold"],ans:3},
+{no:128,subject:"Botany",q:"Movement and accumulation of ions across a membrane against their concentration gradient can be explained by:",opts:["Active Transport","Osmosis","Facilitated Diffusion","Passive Transport"],ans:0},
+{no:129,subject:"Botany",q:"Axile placentation is observed in:",opts:["China rose, Petunia and Lemon","Mustard, Cucumber and Primrose","China rose, Beans and Lupin","Tomato, Dianthus and Pea"],ans:0},
+{no:130,subject:"Botany",q:"Identify the correct statements:\nA. Detrivores perform fragmentation.\nB. The humus is further degraded by some 
